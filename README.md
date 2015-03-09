@@ -1,2 +1,2 @@
 # HCSXET
-Human Centered Systems Experimental Evaluation Tool
+Human Centeredness eXperimental Evaluation Tool
