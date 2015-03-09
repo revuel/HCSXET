@@ -20,23 +20,18 @@
 		</style>
 		
 		<!-- JAVASCRIPT -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="JavaScript/bootstrap.js"></script>
 	</head>
 	
 	<body>
 		<!-- Cabecera -->
 		<header>
-			<div class="container">
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-					<div class="row">
-						<div class="col-md-1">&nbsp;</div>
-						<div class="col-md-1"><a href="index.php"><h1>HCXET</h1></a></div>
-					</div>
-				</nav>
-			</div>
+			<?php include 'Include/cabecera1.php'; ?>
 		</header>
 		
 		<!-- Contenido principal -->
-		<main class="bs-docs-masthead">
+		<main>
 			<div class="container well">
 				<h3 class="text-center">Human Centeredness eXperimental Evaluation Tool</h3>
 				<hr>
@@ -83,11 +78,12 @@
 		<div class = "container">
 			<hr>
 			<div class="row">
-				<div class="col-xs-6 text-center well">
+				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
 					<h2 class="text-center">Principios</h2>
-					<img src="Pics/moldeprincipios.png" alt="Custiones de la Encuesta">
+					<!--<img src="Pics/moldeprincipios.png" alt="Custiones de la Encuesta">-->
+					<?php include 'Include/slider1.php'; ?>
 				</div>
-				<div class="col-xs-6 text-center well">
+				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
 					<h2>Cuestiones</h2>
 					<img src="Pics/moldepreguntas.png" alt="Custiones de la Encuesta">
 				</div>
@@ -95,7 +91,7 @@
 		</div>
 		<div class = "container">
 			<hr>
-			<div class = "container text-center">
+			<div class = "col-xs-12 col-md-12 col-sm-12 text-center">
 				<h2>¿Cómo funciona la herramienta?</h2>
 				<img src="Pics/explicaciondelaherramienta.png" alt="Explicación de la HCXET">
 			</div>

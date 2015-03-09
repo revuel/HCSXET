@@ -8,13 +8,13 @@
 					<h3 class="panel-title text-center">Referencias</h3>
 				</div>
 				<div class="panel-body">
-					<a href=""><p class="text-center">Personalidades</p></a>
+					<a href="personalidades.php"><p class="text-center">Personalidades</p></a>
 				</div>
 				<div class="panel-body">
-					<a href=""><p class="text-center">Instituciones</p></a>
+					<a href="instituciones.php"><p class="text-center">Instituciones</p></a>
 				</div>
 				<div class="panel-body">
-					<a href=""><p class="text-center">Artículos académicos</p></a>
+					<a href="articulos.php"><p class="text-center">Artículos académicos</p></a>
 				</div>
 			</div>
 		</div>
@@ -47,4 +47,5 @@
 			</div>
 		</div>
 	</div>
+	<hr>
 </div>
