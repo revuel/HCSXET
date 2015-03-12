@@ -32,9 +32,9 @@
 		
 		<!-- Contenido principal -->
 		<main>
+			<h3 class="text-center">Human Centeredness eXperimental Evaluation Tool</h3>
+			<hr>
 			<div class="container well">
-				<h3 class="text-center">Human Centeredness eXperimental Evaluation Tool</h3>
-				<hr>
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2">
 						<h2 class="text-center">Introducción</h2>
@@ -61,9 +61,9 @@
 						<h4 class="text-center">Darme de Alta</h4>
 						<p class="text-center">Para poder realizar la encuesta y comprobar cómo
 						de centrado en la persona es un sistema, es necesario registrarse en el sitio.<p>
-						<a href=""><p class="text-center">Registrarse</p></a>
+						<a href="Register/alta.php"><p class="text-center">Registrarse</p></a>
 						<p class="text-center">¿Está ya registrado?<p>
-						<a href=""><p class="text-center">Conectarse</p></a>
+						<a href="Login/conectar.php"><p class="text-center">Conectarse</p></a>
 					</div>
 				  <div class="col-xs-6 col-md-4 col-sm-4">
 						<h4 class="text-center">Orígenes</h4>
@@ -80,9 +80,9 @@
 			<div class="row">
 				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
 					<h2 class="text-center">Principios</h2>
-					<!--<img src="Pics/moldeprincipios.png" alt="Custiones de la Encuesta">-->
 					<?php include 'Include/slider1.php'; ?>
 				</div>
+				<div class="clearfix visible-xs"></div>
 				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
 					<h2>Cuestiones</h2>
 					<img src="Pics/moldepreguntas.png" alt="Custiones de la Encuesta">

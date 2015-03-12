@@ -57,4 +57,6 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<p class = "text-center">Principios recopilados del libro "Collected Esays of Human Centered Computing"</p>
+<br><br>
+<p class = "text-center">Principios recopilados y adaptados del libro "Collected Esays of 
+Human Centered Computing from 2001 to 2011"</p>
