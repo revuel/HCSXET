@@ -69,8 +69,8 @@
 						<h4 class="text-center">Orígenes</h4>
 						<p class="text-center">Existe un cierto consenso en atribuir oficialmente el nacimiento 
 						de los Sistemas Centrados en la Persona a la fecha de febrero de 1997, en una presentación
-						de la División de Información de la NSF (National Science Foundation), protagonizada por
-						Rob Kling y Susan Leigh Star.<p>
+						de la División de Información de la NSF (National Science Foundation), protagonizada en
+						gran parte por Rob Kling y Susan Leigh Star.<p>
 					</div>
 				</div>
 			</div>
