@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">-->
+		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">
 		
 		<style>
 			body { padding-top: 70px; }
@@ -46,6 +46,7 @@
 						<div class = "row">
 							<div class="col-xs-6 col-sm-4 col-md-8 col-md-offset-2 well">
 								<form class="form-horizontal">
+									<hr>
 									<div class="form-group form-group-sm">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Nombre</label>
 										<div class="col-sm-10">
@@ -64,6 +65,19 @@
 											<textarea class="form-control" rows="3" id="tokenfield"  placeholder="Añadir participantes..."></textarea>
 										</div>
 									</div>
+									<div class="checkbox">
+										<label>
+										  <input type="checkbox"> Utilizar lista </input>
+										</label>
+									</div><br>
+									<select class="form-control" disabled>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									<hr>
 									<div class = "row text-center">
 										<button type="button" class="btn btn-primary">Nuevo estudio</button>
 									</div>
@@ -80,36 +94,9 @@
 			<?php include '../Include/pie.php'; ?>
 		</footer>
 		
+		<!-- TokenFields Bootstrap (control)-->
 		<script>
-			$('#tokenfield')
-
-			  .on('tokenfield:createtoken', function (e) {
-				var data = e.attrs.value.split('|')
-				e.attrs.value = data[1] || data[0]
-				e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
-			  })
-
-			  .on('tokenfield:createdtoken', function (e) {
-				// Über-simplistic e-mail validation
-				var re = /\S+@\S+\.\S+/
-				var valid = re.test(e.attrs.value)
-				if (!valid) {
-				  $(e.relatedTarget).addClass('Esto no es un correo')
-				}
-			  })
-
-			  .on('tokenfield:edittoken', function (e) {
-				if (e.attrs.label !== e.attrs.value) {
-				  var label = e.attrs.label.split(' (')
-				  e.attrs.value = label[0] + '|' + e.attrs.value
-				}
-			  })
-
-			  .on('tokenfield:removedtoken', function (e) {
-				alert('Fue quitado de la lista: ' + e.attrs.value)
-			  })
-
-			  .tokenfield()
+			<?php include 'Include2/tkf.php'; ?>
 		</script>
 	</body>
 </html>

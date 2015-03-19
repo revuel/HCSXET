@@ -16,12 +16,16 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">
 		
 		<style>
 			body { padding-top: 70px; }
 		</style>
 		
 		<!-- JAVASCRIPT -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		
+		<script src="JavaScript/bootstrap-tokenfield.js"></script>
 
 	</head>
 	
@@ -40,8 +44,21 @@
 					<div class="col-xs-6 col-md-4 well">
 						<?php include '../Include2/opcioneslista.php'; ?>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-8 well">
-						<h4 class = "text-center">Resultado de la acción</h4>
+					<div style="height:340px;" class="col-xs-12 col-sm-6 col-md-8 well" >
+						<h4 class = "text-center">Crear una nueva lista de participantes</h4>
+						<br><br><br>
+						<form class="form-horizontal  pagination-centered">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-4 control-label" for="formGroupInputSmall">Participantes de la lista:</label>
+							</div>
+							
+							<textarea class="form-control" rows="7" id="tokenfield" placeholder="Añadir participantes..." ></textarea>
+							
+							<br>
+							<div class = "row text-center">
+								<button type="button" class="btn btn-primary">Nueva lista</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -51,5 +68,9 @@
 		<footer>
 			<?php include '../../Include/pie.php'; ?>
 		</footer>
+		<!-- TokenFields Bootstrap (control)-->
+		<script>
+			<?php include '../Include2/tkf.php'; ?>
+		</script>
 	</body>
 </html>

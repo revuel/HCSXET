@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">
 		
 		<style>
 			body { padding-top: 70px; }
@@ -40,8 +41,26 @@
 					<div class="col-xs-6 col-md-4 well">
 						<?php include '../Include2/opcioneslista.php'; ?>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-8 well">
-						<h4 class = "text-center">Resultado de la acción</h4>
+					<div style="height:340px;" class="col-xs-12 col-sm-6 col-md-8 well " >
+						<h4 class = "text-center">Borrar una lista de participantes</h4><br><br><br><br>
+						<form class="form-horizontal">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
+								<div class = "col-sm-6">
+									<select class="form-control">
+											<option>Lista primera</option>
+											<option>Lista segunda</option>
+											<option>Otra lista</option>
+											<option>Otra lista</option>
+											<option>Última lista</option>
+									</select>
+								</div>
+							</div>
+							<br>
+							<div class = "row text-center">
+								<button type="button" class="btn btn-danger">Eliminar</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
