@@ -18,10 +18,12 @@
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 70px; }
+			body { padding-top: 95px; }
 		</style>
 		
 		<!-- JAVASCRIPT -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="JavaScript/bootstrap.js"></script>
 	</head>
 	
 	<body>
@@ -37,14 +39,19 @@
 			<div class="container well text-center">
 				<div class="row">
 					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/nuevotarget.php"><img src="Pics/nuevaencuesta.png" alt="Crear nueva encuesta"></a>
-						<img src="Pics/pendienteencuesta.png" alt="Crear nueva encuesta">
+						<a href="Web/nuevotarget.php">
+							<img src="Pics/nuevaencuesta.png" alt="Crear nueva encuesta">
+						</a>
+						<a href ="Web/cursotarget.php">
+							<img class = "img-responsive" src="Pics/pendienteencuesta.png" alt="Crear nueva encuesta">
+						</a>
 					</div>
 					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/Listas/lists.php"><img src="Pics/mislistas.png" alt="Lista de direcciones"></a>
+						<a href="Web/Listas/listas.php">
+						<img class = "img-responsive" src="Pics/mislistas.png" alt="Lista de direcciones"></a>
 					</div>
 					<div class="col-xs-6 col-md-4 col-sm-4">
-						<img src="Pics/misresultados.png" alt="Resultados de mis encuestas">
+						<img class = "img-responsive" src="Pics/misresultados.png" alt="Resultados de mis encuestas">
 					</div>
 				</div>
 			</div>

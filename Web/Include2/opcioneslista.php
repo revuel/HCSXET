@@ -17,10 +17,10 @@
 	</li>
 	<br>
 	<li>
-		<a href = "">Ver todos participantes</a>
+		<a href = "Web/Listas/todoparticipante.php">Ver todos los participantes</a>
 	</li>
 	<li>
-		<a href = "">Añadir participante a lista</a>
+		<a href = "Web/Listas/nuevoparticipante.php">Añadir participante a lista</a>
 	</li>
 </ul>
 

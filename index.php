@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 70px; }
+			body { padding-top: 95px; }
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -85,7 +85,7 @@
 				<div class="clearfix visible-xs"></div>
 				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
 					<h2>Cuestiones</h2>
-					<img src="Pics/moldepreguntas.png" alt="Custiones de la Encuesta">
+					<img class = "img-responsive" src="Pics/moldepreguntas.png" alt="Custiones de la Encuesta">
 				</div>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 			<hr>
 			<div class = "col-xs-12 col-md-12 col-sm-12 text-center">
 				<h2>¿Cómo funciona la herramienta?</h2>
-				<img src="Pics/explicaciondelaherramienta.png" alt="Explicación de la HCXET">
+				<img class = "img-responsive" src="Pics/explicaciondelaherramienta.png" alt="Explicación de la HCXET">
 			</div>
 		</div>
 		

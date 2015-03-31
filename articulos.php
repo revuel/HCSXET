@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 70px; }
+			body { padding-top: 95px; }
 		</style>
 		
 		<!-- JAVASCRIPT -->

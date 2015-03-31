@@ -18,8 +18,14 @@
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 70px; }
-			#conectar {padding:150px;}
+			
+			.vertical-center {
+			  min-height: 100%;  
+			  min-height: 100vh;
+
+			  display: flex;
+			  align-items: center;
+			}
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -33,25 +39,16 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<div class = "container" id="conectar">
-				<h4 class = "text-center">Introduzca sus datos de acceso</h2>
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="email">Correo electrónico:</label>
-						<div class="col-sm-10">
-							<input type="email" class="form-control" id="email" placeholder="Introduzca su dirección de correo" required>
-						</div>
-					</div>
-						<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd">Contraseña</label>
-						<div class="col-sm-10">          
-							<input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña en este sitio web" required>
-						</div>
-					</div>
-					<div class="form-group">        
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Conectar</button>
-						</div>
+			<div class = "row">
+				<form class="form-signin vertical-center" role="form">
+					<div class = "col-xs-12 col-sm-6 col-md-offset-3">
+						<label class="control-label" for="email">Correo electrónico</label>
+						<input type="email" class="form-control" id="email" placeholder="Introduzca su dirección de correo" required>
+						<br>	
+						<label class="control-label" for="pwd">Contraseña</label>       
+						<input type="password" class="form-control" id="estudio" placeholder="Introduzca su contraseña de acceso a este sitio" required>
+						<br>	
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Conectar</button>
 					</div>
 				</form>
 			</div>

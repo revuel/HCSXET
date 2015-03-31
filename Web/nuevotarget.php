@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 70px; }
+			body { padding-top: 95px; }
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -62,7 +62,7 @@
 									<div class="form-group form-group-sm">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Añadir</label>
 										<div class="col-sm-10">
-											<textarea class="form-control" rows="3" id="tokenfield"  placeholder="Añadir participantes..."></textarea>
+											<input type = "text" class="form-control" id="tokenfield"  placeholder="Añadir participantes..."></input>
 										</div>
 									</div>
 									<div class="checkbox">

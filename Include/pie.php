@@ -18,14 +18,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6 col-md-4 col-sm-4">
+		<div class="col-xs-6 col-md-4 col-sm-4 text-center">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title text-center">Universidad Francisco de Vitoria</h3>
+					<h3 class="panel-title">Universidad Francisco de Vitoria</h3>
 				</div>
-				<div class="panel-body text-center">
+				<div class="panel-body">
 					<a href="http://www.ufv.es/inicio" target="_blank">
-					<img src="Pics/logoufv.png" alt="Logo UFV" ismap>
+					<img class ="img-responsive" src="Pics/logoufv.png" alt="Logo UFV" ismap>
 					</a>
 				</div>
 			</div>

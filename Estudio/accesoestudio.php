@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 95px; }
+			body { padding-top: 70px; }
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -32,37 +32,28 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<div class="container">
-				<h2 class = "text-center">Formulario de registro</h2>
-				<p class = "text-center">Para poder enviar la encuesta y 
-				así poder tener una noción del grado de cumplimiento de los principios 
-				de la Computación Centrada en la Persona que un sistema ofrece, es necesario disponer
-				de una cuenta en este sitio web.</p>
+			<div class = "container">
+			<br>
 				<div class = "row well">
 					<form class="form-signin" role="form">
+						<h2 class="form-signin-heading text-center">Participar en un estudio</h2>
 						<div class = "col-xs-12 col-sm-6 col-md-offset-3">
 							<label class="control-label" for="email">Correo electrónico</label>
 							<input type="email" class="form-control" id="email" placeholder="Introduzca su dirección de correo" required>
 							<br>	
-							<label class="control-label" for="pwd">Contraseña</label>       
-							<input type="password" class="form-control" id="estudio" placeholder="Determine su contraseña de acceso" required>
+							<label class="control-label" for="pwd">Nombre del estudio</label>       
+							<input type="text" class="form-control" id="estudio" placeholder="Introduzca el nombre del estudio al que fue invitado" required>
 							<br>	
-							<label class="control-label" for="pwd">Nombre</label>       
-							<input type="text" class="form-control" id="codigo" placeholder="Introduzca su nombre (opcional)">
+							<label class="control-label" for="pwd">Código de acceso personal al estudio</label>       
+							<input type="password" class="form-control" id="codigo" placeholder="Introduzca el código que le ha sido facilitado" required>
 							<br>
-							<label class="control-label" for="pwd">Apellidos</label>       
-							<input type="text" class="form-control" id="codigo" placeholder="Introduzca sus apellidos (opcional)">
-							<br>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme</button>
+							<button class="btn btn-lg btn-primary btn-block" type="submit">Ir</button>
 						</div>
 						
 					</form>
 				</div>
 			</div>
-
 		</main>
-		
-		
 		<!-- Pie de página-->
 		<footer>
 			<?php include '../Include/pie.php'; ?>
