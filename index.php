@@ -10,6 +10,9 @@
 		<meta name="keywords" content="HCS, HCC, HCD, Human Centered Systems, Sistemas Centrados en la Persona">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
+		<!-- ICON -->
+		<link href="/favicon.ico" rel="icon"></link>
+		
 		<!-- CSS -->
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
@@ -17,6 +20,7 @@
 		
 		<style>
 			body { padding-top: 95px; }
+			centerimage { margin: 0 auto;}
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -78,22 +82,29 @@
 		<div class = "container">
 			<hr>
 			<div class="row">
-				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
+				<div class="col-xs-12 col-md-12 col-sm-12 text-center well">
 					<h2 class="text-center">Principios</h2>
 					<?php include 'Include/slider1.php'; ?>
 				</div>
-				<div class="clearfix visible-xs"></div>
-				<div class="col-xs-6 col-md-6 col-sm-6 text-center well">
+				<!--<div class="clearfix visible-xs"></div>-->
+			</div>
+		</div>
+		<div class = "container">
+			<hr>
+			<div class="row">
+				<div class="col-xs-12 col-md-12 col-sm-12 text-center well">
 					<h2>Cuestiones</h2>
-					<img class = "img-responsive" src="Pics/moldepreguntas.png" alt="Custiones de la Encuesta">
+					<img class = "img-responsive center-block" src="Pics/moldepreguntas.png" alt="Custiones de la Encuesta">
 				</div>
 			</div>
 		</div>
 		<div class = "container">
 			<hr>
-			<div class = "col-xs-12 col-md-12 col-sm-12 text-center">
-				<h2>¿Cómo funciona la herramienta?</h2>
-				<img class = "img-responsive" src="Pics/explicaciondelaherramienta.png" alt="Explicación de la HCXET">
+			<div class="row">
+				<div class = "col-xs-12 col-md-12 col-sm-12 text-center">
+					<h2>¿Cómo funciona la herramienta?</h2>
+					<img class = "img-responsive center-block" src="Pics/explicaciondelaherramienta.png" alt="Explicación de la HCXET">
+				</div>
 			</div>
 		</div>
 		

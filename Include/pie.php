@@ -25,7 +25,7 @@
 				</div>
 				<div class="panel-body">
 					<a href="http://www.ufv.es/inicio" target="_blank">
-					<img class ="img-responsive" src="Pics/logoufv.png" alt="Logo UFV" ismap>
+					<img class ="img-responsive center-block" src="Pics/logoufv.png" alt="Logo UFV" ismap>
 					</a>
 				</div>
 			</div>

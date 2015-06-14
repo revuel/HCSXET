@@ -9,24 +9,24 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="index.php"><h1>HCXET</h1></a>
+			<a href="index.php" title="Página principal"><h1>HCXET</h1></a>
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href ="Estudio/accesoestudio.php">
-						<img src = "Pics/notebook91.png"></img>
+					<a href ="Estudio/accesoestudio.php" title="Contestar encuesta">
+						<span class= "glyphicon glyphicon-list-alt" aria-hidden = "true" style="font-size:60px;"></span>
 					</a>
 				</li>
 				<li>
-					<a href ="Web/start.php">
-						<img src = "Pics/power5.png"></img>
+					<a href ="Web/start.php" title="Conectar">
+						<span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:60px;"></span>
 					</a>
 				</li>
 				<li>
-					<a href ="Register/alta.php">
-						<img src = "Pics/globe35.png"></img>
+					<a href ="Register/alta.php" title="Registrarse">
+						<span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="font-size:60px;"></span>
 					</a>
 				</li>
 			</ul>

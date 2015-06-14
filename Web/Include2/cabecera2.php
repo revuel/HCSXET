@@ -17,8 +17,8 @@
 				</li>
 
 				<li>
-					<a href ="Web/start.php">
-						<img src = "Pics/power5.png"></img>
+					<a href ="Web/start.php" title="Desconectar">
+						<span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:60px;"></span>
 					</a>
 				</li>
 
