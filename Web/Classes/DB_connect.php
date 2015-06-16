@@ -15,7 +15,9 @@ class DB_Connect {
     private function connect() 
 	{	
 		// Importar variables de conexión
-        require_once '../config/config.php'; // Para importar las variables de configuración
+		require_once(__DIR__.'/../config/config.php'); // Comprobar si esto esta funcionando realmente
+
+		
 		try 
 		{
 			$conn = new PDO('mysql:host='.DB_SERVER .';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);

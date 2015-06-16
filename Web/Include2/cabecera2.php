@@ -13,11 +13,11 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="index.php"><h4>Hola persona!</h4></a>
+					<a href="Web/start.php"><h4>Hola persona!</h4></a>
 				</li>
 
 				<li>
-					<a href ="Web/start.php" title="Desconectar">
+					<a href ="Login/logout.php" title="Desconectar">
 						<span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:60px;"></span>
 					</a>
 				</li>

@@ -1,3 +1,33 @@
+<?php
+	
+	require_once 'Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	$alltarget = $db->getAllTargetfromuser($u);
+	
+	print_r($alltarget);
+	
+	/*while($row=mysql_fetch_array($result)) 
+	{ 
+	$title=$row['title']; 
+	$url=$row['url']; 
+
+	$posts[] = array('title'=> $title, 'url'=> $url);
+
+	} 
+
+	$response['posts'] = $posts;
+
+	$fp = fopen('results.json', 'w');
+	fwrite($fp, json_encode($response));
+	fclose($fp);*/
+	
+	//http://stackoverflow.com/questions/2467945/how-to-generate-json-file-with-php
+	//http://stackoverflow.com/questions/17623550/write-data-to-a-json-file-from-php-file
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -43,8 +73,11 @@
 				<div class="row">
 					<ul class="nav nav-tabs">
 						  <li role="presentation" class="active"><a >Estudio 1</a></li>
-						  <li role="presentation"><a >...</a></li>
-						  <li role="presentation"><a >Estudio n</a></li>
+						  <!--<li role="presentation"><a >...</a></li>
+						  <li role="presentation"><a >Estudio n</a></li>-->
+						<?php foreach($alltarget as $i):?>
+								<li role="presentation"><a ><?=($i[1])?></a></li>
+						<?php endforeach ?>
 					</ul>
 				</div>
 				<div class="row">

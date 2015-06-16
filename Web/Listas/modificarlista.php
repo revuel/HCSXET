@@ -1,3 +1,17 @@
+<?php
+	
+	require_once '../Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	$nombreslista = $db->listaParcipantesIdusuario($u);
+	
+	//print_r($nombreslista);
+	
+
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -50,11 +64,9 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
 							<div class = "col-sm-6">
 								<select class="form-control">
-										<option>Lista primera</option>
-										<option>Lista segunda</option>
-										<option>Otra lista</option>
-										<option>Otra lista</option>
-										<option>Última lista</option>
+									<?php foreach($nombreslista as $i):?>
+										<option><?=($i[0])?></td>
+									<?php endforeach ?>
 								</select>
 							</div>
 						</div>

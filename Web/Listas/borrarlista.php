@@ -1,3 +1,16 @@
+<?php
+	
+	require_once '../Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	$nombreslista = $db->listaParcipantesIdusuario($u);
+	
+	//print_r($nombreslista);
+	
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -43,22 +56,20 @@
 					</div>
 					<div style="height:340px;" class="col-xs-12 col-sm-6 col-md-8 well " >
 						<h4 class = "text-center">Borrar una lista de participantes</h4><br><br><br><br>
-						<form class="form-horizontal">
+						<form class="form-horizontal" action = "Web/Listas/accion-borrarlista.php" method= "post">
 							<div class="form-group form-group-sm">
 								<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
 								<div class = "col-sm-6">
-									<select class="form-control">
-											<option>Lista primera</option>
-											<option>Lista segunda</option>
-											<option>Otra lista</option>
-											<option>Otra lista</option>
-											<option>Última lista</option>
+									<select class="form-control" name="lista">
+										<?php foreach($nombreslista as $i):?>
+											<option value="<?=($i[1])?>"><?=($i[0])?> </td>
+										<?php endforeach ?>
 									</select>
 								</div>
 							</div>
 							<br>
 							<div class = "row text-center">
-								<button type="button" class="btn btn-danger">Eliminar</button>
+								<button type="submit" class="btn btn-danger">Eliminar</button>
 							</div>
 						</form>
 					</div>

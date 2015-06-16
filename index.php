@@ -20,7 +20,6 @@
 		
 		<style>
 			body { padding-top: 95px; }
-			centerimage { margin: 0 auto;}
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -45,7 +44,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2">
 						<p class="text-center lead">Herramienta experimental para la comprobación del grado
-						de cumplimiento	de una selección de principios de la Computación Centrada en 
+						de cumplimiento	de una <a href="#prin" title="Ver principios">selección de principios</a> de la Computación Centrada en 
 						la Persona por parte de sistemas informáticos mediante la realización de una
 						encuesta on-line.</p>
 					</div>
@@ -79,7 +78,7 @@
 				</div>
 			</div>
 		</main>
-		<div class = "container">
+		<div class = "container" id="prin">
 			<hr>
 			<div class="row">
 				<div class="col-xs-12 col-md-12 col-sm-12 text-center well">

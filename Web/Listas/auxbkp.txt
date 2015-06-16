@@ -4,25 +4,25 @@ class DB_Functions
 	// ATRIBUTOS
     private $con;
 	
-	// M脡TODOS
+	// M蒚ODOS
     // constructor
     function __construct() 
 	{
-        require_once __DIR__.'/DB_connect.php'; // Importando clase de conexi贸n
-        //require_once 'DB_connect.php'; // Importando clase de conexi贸n
+        require_once __DIR__.'/DB_connect.php'; // Importando clase de conexi髇
+        //require_once 'DB_connect.php'; // Importando clase de conexi髇
 		
 		// conectando...
         $db = new DB_Connect();
         $this->con = $db->getDbConnection(); // Conectando con base de datos
     }
 	
-	// gesti贸n de los alumnos
+	// gesti髇 de los alumnos
 	public function listaralumno() // Consulta de todos los registros
 	{
 		try 
 		{
             $consulta = $this->con->prepare('SELECT * FROM alumno');
-            $consulta->execute(); // Ejecuta la consulta sin m谩s
+            $consulta->execute(); // Ejecuta la consulta sin m醩
             $resultado = $consulta->fetchAll(); // Guarda todos los valores de retorno
 			return $resultado; // Devolver array
 			
@@ -41,7 +41,7 @@ class DB_Functions
 			VALUES (:nombre, :apellidos, :email, :dni)');
             $params = array(':nombre' => $nom, ':apellidos' => $ape, 
 			':email' => $cor, ':dni' => $dni, );
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
 			
         } 
 		catch(PDOException $e) 
@@ -50,18 +50,18 @@ class DB_Functions
         }
 	}
 	
-	public function bajaalumno($id) // Eliminaci贸n de registro
+	public function bajaalumno($id) // Eliminaci髇 de registro
 	{
 		try
 		{
 			$sql = 'DELETE FROM alumno WHERE id_alumno = :id'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparaci贸n
-            $params = array(':id' => $id); // Array de par谩metros de la consulta
-            $consulta->execute($params); // Ejecuci贸n
+			$consulta = $this->con->prepare($sql); // Preparaci髇
+            $params = array(':id' => $id); // Array de par醡etros de la consulta
+            $consulta->execute($params); // Ejecuci髇
 		}
 		catch(PDOException $e)
 		{
-			// Podr铆amos lanzar mensaje de excepci贸n.
+			// Podr韆mos lanzar mensaje de excepci髇.
 		}
 	}
 	
@@ -73,7 +73,7 @@ class DB_Functions
             $consulta = $this->con->prepare('UPDATE alumno SET nombre = :nom, apellidos = :ape,
 			email = :cor, dni = :dni WHERE id_alumno = :id'); 
             $params = array(':nom' => $nom, ':ape' => $ape, ':cor' => $cor, ':dni' => $dni, ':id' => $id, );
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
         } 
 		catch(PDOException $e) 
 		{
@@ -81,7 +81,7 @@ class DB_Functions
         }
 	}
 	
-	// M脡TODOS QUE SER脕N NECESARIOS PARA HCXET
+	// M蒚ODOS QUE SER罭 NECESARIOS PARA HCXET
 	
 	// Nuevo target por lista
 
@@ -115,7 +115,7 @@ class DB_Functions
             
 			$params = array(':participante' => $participante, ':encuesta' => $encuesta, ':r1' => $r1, ':r2' => $r2, ':r3' => $r3, ':r4' => $r4, ':r5' => $r5,':r6' => $r6, ':r7' => $r7, ':r8' => $r8, ':r9' => $r9, ':r10' => $r10, ':r11' => $r11, ':r12' => $r12, ':r13' => $r13, ':r14' => $r14,':r15' => $r15);
 			
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
         } 
 		catch(PDOException $e) 
 		{
@@ -135,7 +135,7 @@ class DB_Functions
             
 			$params = array(':email' => $email);
 			
-			//$consulta->execute(); // Ejecuta la consulta sin m谩s
+			//$consulta->execute(); // Ejecuta la consulta sin m醩
 			
 			$consulta->execute($params);
 			
@@ -163,7 +163,7 @@ class DB_Functions
             
 			$params = array(':email' => $email);
 			
-			//$consulta->execute(); // Ejecuta la consulta sin m谩s
+			//$consulta->execute(); // Ejecuta la consulta sin m醩
 			
 			$consulta->execute($params);
 			
@@ -189,11 +189,11 @@ class DB_Functions
             
 			$params = array(':nom' => $nom);
 			
-			//$consulta->execute(); // Ejecuta la consulta sin m谩s
+			//$consulta->execute(); // Ejecuta la consulta sin m醩
 			
 			$consulta->execute($params);
 			
-            $resultado = $consulta->fetchAll(PDO::FETCH_COLUMN, 0); // MUY IMPORTANTE PARA DEVOLVER VALORES 脷NICOS
+            $resultado = $consulta->fetchAll(PDO::FETCH_COLUMN, 0); // MUY IMPORTANTE PARA DEVOLVER VALORES 贜ICOS
 			$id = $resultado[0];
 			return $id;
         } 
@@ -209,13 +209,13 @@ class DB_Functions
 		try
 		{
 			$sql = 'SELECT token FROM valoracion WHERE id_destinatario = :dest AND id_target = :targ'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparaci贸n
-            $params = array(':dest' => $participante, ':targ' => $encuesta ); // Array de condici贸n
-            $consulta->execute($params); // Ejecuci贸n
+			$consulta = $this->con->prepare($sql); // Preparaci髇
+            $params = array(':dest' => $participante, ':targ' => $encuesta ); // Array de condici髇
+            $consulta->execute($params); // Ejecuci髇
 			$resultado = $consulta->fetchAll(PDO::FETCH_COLUMN, 0); // Captura del dato
 			$id = $resultado[0];
 			
-			//if ($token == $resultado[0]) // Comparaci贸n del resultado con el parametro
+			//if ($token == $resultado[0]) // Comparaci髇 del resultado con el parametro
 			if ($token == $id) 
 			{
 				return true;
@@ -227,7 +227,7 @@ class DB_Functions
 		}
 		catch(PDOException $e)
 		{
-			// Podr铆amos lanzar mensaje de excepci贸n.
+			// Podr韆mos lanzar mensaje de excepci髇.
 		}
 	}
 	
@@ -237,12 +237,12 @@ class DB_Functions
 		try
 		{
 			$sql = 'SELECT clave FROM usuario WHERE email_usuario = :email'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparaci贸n
-            $params = array(':email' => $email); // Array de condici贸n
-            $consulta->execute($params); // Ejecuci贸n
+			$consulta = $this->con->prepare($sql); // Preparaci髇
+            $params = array(':email' => $email); // Array de condici髇
+            $consulta->execute($params); // Ejecuci髇
 			$resultado = $consulta->fetchAll(PDO::FETCH_COLUMN, 0); // Captura del dato
 
-			if ($clave == $resultado[0]) // Comparaci贸n del resultado con el parametro
+			if ($clave == $resultado[0]) // Comparaci髇 del resultado con el parametro
 			{
 				return true;
 			}
@@ -253,7 +253,7 @@ class DB_Functions
 		}
 		catch(PDOException $e)
 		{
-			// Podr铆amos lanzar mensaje de excepci贸n.
+			// Podr韆mos lanzar mensaje de excepci髇.
 		}
 	}
 	
@@ -266,7 +266,7 @@ class DB_Functions
 			VALUES (:nombre, :app, :id_usuario)');
             
 			$params = array(':nombre' => $nombre, ':app' => $app, ':id_usuario' => $id_usuario);
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
 			
         } 
 		catch(PDOException $e) 
@@ -306,7 +306,7 @@ class DB_Functions
            
 			$params = array(':idusuario' => $idusuario);
 			
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
 			$resultado = $consulta->fetchAll();
 			
 			return $resultado; // Devolver array
@@ -319,29 +319,9 @@ class DB_Functions
 	}
 	
 	// Seleccionar los nombres de los todos participantes de las listas de un id usuario
-	// Seleccionar los nombres de los participantes de una lista seg煤n id lista ?
-	public function listaNombresparticipantelista($idlista) // Consulta de todos los registros
-	{
-		try 
-		{
-            $consulta = $this->con->prepare('SELECT nombre_destinatario FROM destinatario 
-			WHERE id_destinatario = ANY (SELECT id_destinatario FROM contiene WHERE id_lista = :idlista)');
-           
-			$params = array(':idlista' => $idlista);
-			
-			$consulta->execute($params); // Ejecuci贸n
-			$resultado = $consulta->fetchAll();
-			
-			return $resultado; // Devolver array
-			
-        } 
-		catch(PDOException $e) 
-		{
-            echo 'ERROR: ' . $e->getMessage(); // Posible error
-        }
-	}
 	
-	// Seleccionar los nombres de los participantes de una lista seg煤n id lista ?
+	
+	// Seleccionar los nombres de los participantes de una lista seg鷑 id lista ?
 	public function listaParcipantestodosIdusuario($idus) // Consulta de todos los registros
 	{
 		try 
@@ -352,7 +332,7 @@ class DB_Functions
            
 			$params = array(':idus' => $idus);
 			
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
 			$resultado = $consulta->fetchAll();
 			
 			return $resultado; // Devolver array
@@ -373,7 +353,7 @@ class DB_Functions
 			VALUES (:nombre_lista, :id_usuario)');
             
 			$params = array(':nombre_lista' => $nombre_lista, ':id_usuario' => $id_usuario);
-			$consulta->execute($params); // Ejecuci贸n
+			$consulta->execute($params); // Ejecuci髇
 			
         } 
 		catch(PDOException $e) 
@@ -383,54 +363,34 @@ class DB_Functions
 	}
 	
 	// Borrar una lista
-	public function borrarlista($id) // Eliminaci贸n de registro
+	public function borrarlista($id) // Eliminaci髇 de registro
 	{
 		try
 		{
 			$sql = 'DELETE FROM lista WHERE id_lista = :id'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparaci贸n
-            $params = array(':id' => $id); // Array de par谩metros de la consulta
-            $consulta->execute($params); // Ejecuci贸n
+			$consulta = $this->con->prepare($sql); // Preparaci髇
+            $params = array(':id' => $id); // Array de par醡etros de la consulta
+            $consulta->execute($params); // Ejecuci髇
 		}
 		catch(PDOException $e)
 		{
-			// Podr铆amos lanzar mensaje de excepci贸n.
+			// Podr韆mos lanzar mensaje de excepci髇.
 		}
 	}
 	
 	// agregar un unico participante a una lista
-	public function agregarParticipantealista($id) // Eliminaci贸n de registro
+	public function agregarParticipantealista($id) // Eliminaci髇 de registro
 	{
 		try
 		{
 			$sql = 'INSERT INTO destinatario WHERE id_lista = :id'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparaci贸n
-            $params = array(':id' => $id); // Array de par谩metros de la consulta
-            $consulta->execute($params); // Ejecuci贸n
+			$consulta = $this->con->prepare($sql); // Preparaci髇
+            $params = array(':id' => $id); // Array de par醡etros de la consulta
+            $consulta->execute($params); // Ejecuci髇
 		}
 		catch(PDOException $e)
 		{
-			// Podr铆amos lanzar mensaje de excepci贸n.
-		}
-	}
-	
-	// Obtener todos los targets de un usuario
-	public function getAllTargetfromuser($id) // Eliminaci贸n de registro
-	{
-		try
-		{
-			$sql = 'SELECT * FROM target WHERE id_usuario = :id'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparaci贸n
-            $params = array(':id' => $id); // Array de par谩metros de la consulta
-            $consulta->execute($params); // Ejecuci贸n
-			
-			$resultado = $consulta->fetchAll();
-			
-			return $resultado; // Devolver array
-		}
-		catch(PDOException $e)
-		{
-			// Podr铆amos lanzar mensaje de excepci贸n.
+			// Podr韆mos lanzar mensaje de excepci髇.
 		}
 	}
 }

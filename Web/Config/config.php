@@ -4,7 +4,7 @@
 
 define('DB_USER', "root");				// Nombre de tu usuario de phpmyadmin
 define('DB_PASSWORD', ""); 				// Tu contraseña de phpmyadmin 
-define('DB_DATABASE', "prueba"); 		// Nombre de tu base de datos
+define('DB_DATABASE', "hcsxetdb"); 		// Nombre de tu base de datos
 define('DB_SERVER', "localhost");  		// Nombre del servidor
 
 ?>

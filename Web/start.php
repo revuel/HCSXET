@@ -40,18 +40,18 @@
 				<div class="row">
 					<div class="col-xs-6 col-md-4 col-sm-4">
 						<a href="Web/nuevotarget.php">
-							<img src="Pics/nuevaencuesta.png" alt="Crear nueva encuesta">
+							<img class = "img-responsive center-block" src="Pics/nuevaencuesta.png" alt="Crear nueva encuesta" title = "Pulse para crear una nueva encuesta">
 						</a>
 						<a href ="Web/cursotarget.php">
-							<img class = "img-responsive" src="Pics/pendienteencuesta.png" alt="Crear nueva encuesta">
+							<img class = "img-responsive center-block" src="Pics/pendienteencuesta.png" alt="Comprobar estado encuesta" title = "Comprobar estado encuesta">
 						</a>
 					</div>
 					<div class="col-xs-6 col-md-4 col-sm-4">
 						<a href="Web/Listas/listas.php">
-						<img class = "img-responsive" src="Pics/mislistas.png" alt="Lista de direcciones"></a>
+						<img class = "img-responsive center-block" src="Pics/mislistas.png" alt="Lista de direcciones" title = "Gestione sus listas de participantes"></a>
 					</div>
 					<div class="col-xs-6 col-md-4 col-sm-4">
-						<img class = "img-responsive" src="Pics/misresultados.png" alt="Resultados de mis encuestas">
+						<img class = "img-responsive center-block" src="Pics/misresultados.png" alt="Resultados de mis encuestas" title = "Resultados de sus estudios">
 					</div>
 				</div>
 			</div>

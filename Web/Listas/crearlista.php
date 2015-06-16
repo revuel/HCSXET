@@ -47,16 +47,24 @@
 					<div style="height:340px;" class="col-xs-12 col-sm-6 col-md-8 well" >
 						<h4 class = "text-center">Crear una nueva lista de participantes</h4>
 						<br><br><br>
-						<form class="form-horizontal  pagination-centered">
+						<form class="form-horizontal  pagination-centered" action = "Web/Listas/accion-crearlista.php" method = "post">
+							
+							<div class="form-group form-group-sm">
+								<label class="col-sm-2 control-label" for="formGroupInputSmall">Nombre:</label>
+								<div class="col-sm-10">
+									<input class="form-control" type = "text" id="formGroupInputSmall" placeholder="Nombre de la lista..." name = "nombrelista" required></input>
+								</div>
+							</div>
+							
 							<div class="form-group form-group-sm">
 								<label class="col-sm-4 control-label" for="formGroupInputSmall">Participantes de la lista:</label>
 							</div>
-							
-							<textarea class="form-control" rows="7" id="tokenfield" placeholder="Añadir participantes..." ></textarea>
+							<textarea class="form-control" rows="7" id="tokenfield" placeholder="Añadir participantes..." name = "participantes"required></textarea>
 							
 							<br>
+							
 							<div class = "row text-center">
-								<button type="button" class="btn btn-primary">Nueva lista</button>
+								<button type="submit" class="btn btn-primary">Nueva lista</button>
 							</div>
 						</form>
 					</div>

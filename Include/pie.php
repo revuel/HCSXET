@@ -24,7 +24,7 @@
 					<h3 class="panel-title">Universidad Francisco de Vitoria</h3>
 				</div>
 				<div class="panel-body">
-					<a href="http://www.ufv.es/inicio" target="_blank">
+					<a href="http://www.ufv.es/inicio" target="_blank" title="Ir a la UFV">
 					<img class ="img-responsive center-block" src="Pics/logoufv.png" alt="Logo UFV" ismap>
 					</a>
 				</div>

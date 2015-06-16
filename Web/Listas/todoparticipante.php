@@ -1,3 +1,16 @@
+<?php
+	
+	require_once '../Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	$allparticipantes = $db->listaParcipantestodosIdusuario($u);
+	
+	//print_r($nombreslista);
+	
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -48,71 +61,15 @@
 								<tr>
 									<th>#</th>
 									<th>Dirección</th>
-									<th>Estudio</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-									<td>Moodle</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-									<td>Moodle</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-									<td>Moodle</td>
-								</tr>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-									<td>ICBM simulator</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-									<td>ICBM simulator</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-									<td>ICBM simulator</td>
-								</tr>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-									<td>doittomorrow</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-									<td>doittomorrow</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-									<td>doittomorrow</td>
-								</tr>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-									<td>yesmylord</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-									<td>yesmylord</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-									<td>yesmylord</td>
-								</tr>
-								
+								<?php foreach($allparticipantes as $i):?>
+									<tr>
+										<td><?=($i[0])?></td>
+										<td><?=($i[1])?> </td>
+									</tr>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 						<br>

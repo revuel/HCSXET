@@ -1,3 +1,21 @@
+<?php
+	
+	require_once '../Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	$nombreslista = $db->listaParcipantesIdusuario($u);
+	
+	//print_r($nombreslista);
+	
+	// Has de recoger el id_lista del nombre_lista que hay en el select pillado.
+	// Pásalo como valor ahí abajo.
+	
+	$nombresparticipantes = $db->listaNombresparticipantelista(1);
+	print_r($nombresparticipantes);
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -48,11 +66,9 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
 							<div class = "col-sm-6">
 								<select class="form-control">
-										<option>Lista primera</option>
-										<option>Lista segunda</option>
-										<option>Otra lista</option>
-										<option>Otra lista</option>
-										<option>Última lista</option>
+								<?php foreach($nombreslista as $i):?>
+									<option><?=($i[0])?></td>
+								<?php endforeach ?>
 								</select>
 							</div>
 						</div>

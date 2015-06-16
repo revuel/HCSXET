@@ -15,12 +15,12 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href ="Estudio/accesoestudio.php" title="Contestar encuesta">
+					<a href ="Estudio/formestudio.php" title="Contestar encuesta">
 						<span class= "glyphicon glyphicon-list-alt" aria-hidden = "true" style="font-size:60px;"></span>
 					</a>
 				</li>
 				<li>
-					<a href ="Web/start.php" title="Conectar">
+					<a href ="Login/formconectar.php" title="Conectar">
 						<span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:60px;"></span>
 					</a>
 				</li>

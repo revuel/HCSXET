@@ -45,24 +45,24 @@
 						<h4 class = "text-center">Introduzca los datos del sistema a evaluar</h4>
 						<div class = "row">
 							<div class="col-xs-6 col-sm-4 col-md-8 col-md-offset-2 well">
-								<form class="form-horizontal">
+								<form class="form-horizontal" action = "Web/Action/accion-nuevotarget.php" method = "post">
 									<hr>
 									<div class="form-group form-group-sm">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Nombre</label>
 										<div class="col-sm-10">
-											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Nombre del estudio">
+											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Nombre del estudio" name="nombre"></input>
 										</div>
 									</div>
 									<div class="form-group form-group-sm">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Sistema</label>
 										<div class="col-sm-10">
-											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Aplicación/Sistema">
+											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Aplicación/Sistema" name = "app"></input>
 										</div>
 									</div>
 									<div class="form-group form-group-sm">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Añadir</label>
 										<div class="col-sm-10">
-											<input type = "text" class="form-control" id="tokenfield"  placeholder="Añadir participantes..."></input>
+											<input type = "text" class="form-control" id="tokenfield"  placeholder="Añadir participantes..." name = "participantes"></input>
 										</div>
 									</div>
 									<div class="checkbox">
@@ -79,7 +79,7 @@
 									</select>
 									<hr>
 									<div class = "row text-center">
-										<button type="button" class="btn btn-primary">Nuevo estudio</button>
+										<button type="submit" class="btn btn-primary">Nuevo estudio</button>
 									</div>
 								</form>
 							</div>
