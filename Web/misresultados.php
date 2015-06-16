@@ -34,25 +34,26 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<h3 class="text-center">Página principal de gestión</h3>
+			<h3 class="text-center">Comprobar resultados de un estudio</h3>
 			<hr><br>
-			<div class="container well text-center">
+			<div class="container  text-center">
 				<div class="row">
-					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/nuevotarget.php">
-							<img class = "img-responsive center-block" src="Pics/nuevaencuesta.png" alt="Crear nueva encuesta" title = "Pulse para crear una nueva encuesta">
-						</a>
-						<a href ="Web/cursotarget.php">
-							<img class = "img-responsive center-block" src="Pics/pendienteencuesta.png" alt="Comprobar estado encuesta" title = "Comprobar estado encuesta">
-						</a>
+					
+				</div>
+				<div class="row">
+					<div class="col-xs-6 col-md-6 col-sm-4 well">
+						<p>Regla de entrada 1</p>
 					</div>
-					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/Listas/listas.php?id_lista=1">
-						<img class = "img-responsive center-block" src="Pics/mislistas.png" alt="Lista de direcciones" title = "Gestione sus listas de participantes"></a>
+					<div class="col-xs-6 col-md-6 col-sm-4 well">
+						<p>Regla de entrada 2</p>
 					</div>
-					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/misresultados.php?id_lista=1">
-						<img class = "img-responsive center-block" src="Pics/misresultados.png" alt="Resultados de mis encuestas" title = "Resultados de sus estudios">
+				</div>
+				<div class="row">
+					<div class="col-xs-6 col-md-6 col-sm-4 well">
+						<p>Regla de salida</p>
+					</div>
+					<div class="col-xs-6 col-md-6 col-sm-4 well">
+						<p>Resultado</p>
 					</div>
 				</div>
 			</div>

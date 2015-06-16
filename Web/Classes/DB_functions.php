@@ -324,7 +324,7 @@ class DB_Functions
 	{
 		try 
 		{
-            $consulta = $this->con->prepare('SELECT nombre_destinatario FROM destinatario 
+            $consulta = $this->con->prepare('SELECT * FROM destinatario 
 			WHERE id_destinatario = ANY (SELECT id_destinatario FROM contiene WHERE id_lista = :idlista)');
            
 			$params = array(':idlista' => $idlista);
@@ -399,13 +399,12 @@ class DB_Functions
 	}
 	
 	// agregar un unico participante a una lista
-	public function agregarParticipantealista($id) // Eliminación de registro
+	public function agregarParticipantealista($idlista, $idparticipante) 
 	{
 		try
 		{
-			$sql = 'INSERT INTO destinatario WHERE id_lista = :id'; // Consulta
-			$consulta = $this->con->prepare($sql); // Preparación
-            $params = array(':id' => $id); // Array de parámetros de la consulta
+			$consulta = $this->con->prepare('INSERT INTO contiene (id_lista, id_destinatario) VALUES (:idlista, :idparticipante) '); 
+            $params = array(':idlista' => $idlista, ':idparticipante' => $idparticipante); // Array de parámetros de la consulta
             $consulta->execute($params); // Ejecución
 		}
 		catch(PDOException $e)
@@ -433,4 +432,100 @@ class DB_Functions
 			// Podríamos lanzar mensaje de excepción.
 		}
 	}
+	
+	// Comprobar que un destinatario existe por correo electronico
+	public function existeDestinatario($mail) // Consulta de todos los registros
+	{
+		//echo('***' . $mail . '***');
+		
+		try 
+		{
+            $consulta = $this->con->prepare('SELECT id_destinatario FROM destinatario WHERE email_destinatario = :mail');
+            
+			$params = array(':mail' => $mail);
+			
+			$consulta->execute($params);
+			
+            $resultado = $consulta->fetchAll(PDO::FETCH_COLUMN, 0); // MUY IMPORTANTE PARA DEVOLVER VALORES ÚNICOS
+			$id = $resultado[0];
+			return $id;
+			
+			/*print_r('---' . $id . '---');
+			
+			if(isset($resultado[0]))
+			{
+				return $resultado[0];
+				
+				print_r('---' . $resultado[0] . '---');
+			}
+			else
+			{
+				return false;
+			}*/
+        } 
+		catch(PDOException $e) 
+		{
+            echo 'ERROR: existeDestinatario ' . $e->getMessage() .'<br>'; // Posible error
+        }
+	}
+	
+	// Añadir miembro a estudio (inicializar)
+	// Actualizar resultados: Participante a encuesta
+	public function setValoracionesIni($participante, $encuesta) // Actualizar registro
+	{
+		try 
+		{
+            $consulta = $this->con->prepare('INSERT INTO valoracion (id_destinatario, id_target) VALUES (:participante, :encuesta) '); 
+            
+			$params = array(':participante' => $participante, ':encuesta' => $encuesta);
+			
+			$consulta->execute($params); // Ejecución
+        } 
+		catch(PDOException $e) 
+		{
+            echo 'ERROR setResultados: ' . $e->getMessage() .'<br>'; // Posible error
+        }
+	}
+	
+	// Crear un nuevo destinatario (version simple)
+	public function nuevoDestinatario($mail)
+	{
+		try 
+		{
+            $consulta = $this->con->prepare('INSERT INTO destinatario (email_destinatario) 
+			VALUES (:email)');
+            
+			$params = array(':email' => $mail);
+			$consulta->execute($params); // Ejecución
+			
+        } 
+		catch(PDOException $e) 
+		{
+            echo 'ERROR: ' . $e->getMessage(); // Posible error
+        }
+		
+	}
+	
+	// Seleccionar: el mayor id lista
+	public function maxListaid() // Consulta de todos los registros
+	{
+		try 
+		{
+            $consulta = $this->con->prepare('SELECT MAX(id_lista) FROM lista');
+            
+			$consulta->execute();
+			
+            $resultado = $consulta->fetchAll(PDO::FETCH_COLUMN, 0);
+			
+			$id = $resultado[0];
+			return $id;
+			
+        } 
+		catch(PDOException $e) 
+		{
+            echo 'ERROR: getIddestinatario ' . $e->getMessage() .'<br>'; // Posible error
+        }
+	}
+	
+	
 }

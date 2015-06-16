@@ -12,8 +12,20 @@
 	// Has de recoger el id_lista del nombre_lista que hay en el select pillado.
 	// Pásalo como valor ahí abajo.
 	
-	$nombresparticipantes = $db->listaNombresparticipantelista(1);
-	print_r($nombresparticipantes);
+	
+	//print_r($nombresparticipantes);
+	
+	if (isset($_GET['id_lista']))
+	{
+		$id_lista = $_GET['id_lista']; // asignación estándar
+	}
+	else
+	{
+		$id_lista = 1; // casos en los que se acceda a la página con la variable sin establecer
+	}
+	
+	$nombresparticipantes = $db->listaNombresparticipantelista($id_lista);
+	
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +53,18 @@
 		</style>
 		
 		<!-- JAVASCRIPT -->
-
+		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+		
+		<script type="text/javascript">
+			$(function()
+			{
+			  $("#sel").change(function()
+			  {
+				window.location='Web/Listas/listas.php?id_lista=' + this.value
+			  });
+			});
+		</script>
+		
 	</head>
 	
 	<body>
@@ -65,9 +88,11 @@
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
 							<div class = "col-sm-6">
-								<select class="form-control">
+								<select class="form-control" id="sel">
 								<?php foreach($nombreslista as $i):?>
-									<option><?=($i[0])?></td>
+									<option <?php if($i['id_lista'] == $id_lista):?> selected <?php endif?> value = '<?=$i['id_lista']?>'>
+										<?=($i['nombre_lista'])?>
+									</option>
 								<?php endforeach ?>
 								</select>
 							</div>
@@ -81,55 +106,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-								</tr>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-								</tr>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-								</tr>
-								<tr>
-									<td>22</td>
-									<td>Revuel@mymail.com</td>
-								</tr>
-								<tr>
-									<td>101</td>
-									<td>other@mymail.com</td>
-								</tr>
-								<tr>
-									<td>1001</td>
-									<td>another@mymail.com</td>
-								</tr>
-								
+								<?php foreach ($nombresparticipantes as $j):?>
+									<tr>
+										<td><?=($j['id_destinatario'])?></td>
+										<td><?=($j['email_destinatario'])?></td>
+									</tr>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 						<br>
