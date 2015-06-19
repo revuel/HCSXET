@@ -7,9 +7,25 @@
 	
 	$nombreslista = $db->listaParcipantesIdusuario($u);
 	
-	//print_r($nombreslista);
+		//print_r($nombreslista);
 	
-
+	// Has de recoger el id_lista del nombre_lista que hay en el select pillado.
+	// Pásalo como valor ahí abajo.
+	
+	
+	//print_r($nombresparticipantes);
+	
+	if (isset($_GET['id_lista']))
+	{
+		$id_lista = $_GET['id_lista']; // asignación estándar
+	}
+	else
+	{
+		$id_lista = 1; // casos en los que se acceda a la página con la variable sin establecer
+	}
+	
+	$nombresparticipantes = $db->listaNombresparticipantelista($id_lista);
+	
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +56,16 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		
 		<script src="JavaScript/bootstrap-tokenfield.js"></script>
-
+		
+		<script type="text/javascript">
+			$(function()
+			{
+			  $("#sel").change(function()
+			  {
+				window.location='Web/Listas/modificarlista.php?id_lista=' + this.value
+			  });
+			});
+		</script>
 	</head>
 	
 	<body>
@@ -60,27 +85,34 @@
 					</div>
 					<div style="height:340px;" class="col-xs-12 col-sm-6 col-md-8 well " >
 						<h4 class = "text-center">Editar una lista</h4><br><br><br>
-						<div class="form-group form-group-sm">
-							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
-							<div class = "col-sm-6">
-								<select class="form-control">
-									<?php foreach($nombreslista as $i):?>
-										<option><?=($i[0])?></td>
-									<?php endforeach ?>
-								</select>
+						<form class="form-horizontal" action="Web/Listas/accion-modificarlista.php" method="post">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
+								<div class = "col-sm-6">
+									<select class="form-control" id="sel" name="lista">
+										<?php foreach($nombreslista as $i):?>
+											<option <?php if($i['id_lista'] == $id_lista):?> selected <?php endif?> value = '<?=$i['id_lista']?>'>
+												<?=($i[0])?>
+											</td>
+										<?php endforeach ?>
+									</select>
+								</div>
 							</div>
-						</div>
-						<hr>
-						<form class="form-horizontal">
+							<hr>
+						
 							<div class="form-group form-group-sm">
 								<label class="col-sm-4 control-label" for="formGroupInputSmall">Participantes de la lista:</label>
 							</div>
 							
-							<textarea class="form-control" rows="7" id="tokenfield" placeholder="Añadir participantes..." ></textarea>
+							<textarea class="form-control" rows="7" id="tokenfield" name="email" required>
+								<?php foreach ($nombresparticipantes as $j):?>
+									<?=($j['email_destinatario']).','?>
+								<?php endforeach ?>
+							</textarea>
 							
 							<br>
 							<div class = "row text-center">
-								<button type="button" class="btn btn-primary">Modificar lista</button>
+								<button type="submit" class="btn btn-primary">Modificar lista</button>
 							</div>
 						</form>
 					</div>

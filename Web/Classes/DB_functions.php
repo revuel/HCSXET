@@ -527,5 +527,42 @@ class DB_Functions
         }
 	}
 	
+	// Borrar nexos de participantes a lista
+	public function desvincularParticipantes($idlista) // Eliminación de registro
+	{
+		try
+		{
+			$sql = 'DELETE FROM contiene WHERE id_lista = :id'; // Consulta
+			$consulta = $this->con->prepare($sql); // Preparación
+            $params = array(':id' => $idlista); // Array de parámetros de la consulta
+            $consulta->execute($params); // Ejecución
+		}
+		catch(PDOException $e)
+		{
+			// Podríamos lanzar mensaje de excepción.
+		}
+	}
 	
+	// Obtener las medias de cada respuesta de una valoracion
+	public function mediasRespuesta($targetid)
+	{
+		try
+		{
+			$sql = 'SELECT AVG(respuesta_1), AVG(respuesta_2), AVG(respuesta_3), AVG(respuesta_4), AVG(respuesta_5),
+					AVG(respuesta_6), AVG(respuesta_7), AVG(respuesta_8), AVG(respuesta_9), AVG(respuesta_10),
+					AVG(respuesta_11), AVG(respuesta_12), AVG(respuesta_13), AVG(respuesta_14), AVG(respuesta_15) 
+					FROM valoracion WHERE id_target = :targetid; ' ; // Consulta
+			
+			$consulta = $this->con->prepare($sql); // Preparación
+            $params = array(':targetid' => $targetid,); // Array de parámetros de la consulta
+            $consulta->execute($params); // Ejecución
+			
+			$resultado = $consulta->fetchAll();
+			return $resultado;
+		}
+		catch(PDOException $e)
+		{
+			// Podríamos lanzar mensaje de excepción.
+		}
+	}
 }

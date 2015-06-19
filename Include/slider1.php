@@ -11,7 +11,8 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-		<img src="Pics/Principio+1.png" alt="Primer principio">
+		<img src="Pics/Principio+1.png" alt="Primer principio" style="display:inline;">
+		<img src="Pics/armonia.png" alt="Segundo principio" style="float:right; max-width:400px;">
 		<div class="carousel-caption">
 			<h3>Armonía</h3>
 			<p>Equilibrio entre las actividades que desempeñan la máquina y el humano
@@ -19,28 +20,32 @@
 		</div>
     </div>
     <div class="item">
-		<img src="Pics/Principio+2.png" alt="Segundo principio">
+		<img src="Pics/Principio+2.png" alt="Segundo principio" style="display:inline;">
+		<img src="Pics/contexto.jpg" alt="Segundo principio" style="float:right; max-width:585px; max-height:400px;">
 		<div class="carousel-caption">
 			<h3>Apreciación del contexto activo</h3>
 			<p>Acomodar el sistema al entorno en el que será implantado</p>
 		</div>
     </div>
 	<div class="item">
-		<img src="Pics/Principio+3.png" alt="Tercer principio">
+		<img src="Pics/Principio+3.png" alt="Tercer principio" style="display:inline;">
+		<img src="Pics/informacion.jpg" alt="Segundo principio" style="float:right; max-width:585px; max-height:400px;">
 		<div class="carousel-caption">
 			<h3>Disposición de la información</h3>
 			<p>Adaptar cantidad y visualización de la información a las preferencias de la persona</p>
 		</div>
 	</div>
 	<div class="item">
-		<img src="Pics/Principio+4.png" alt="Cuarto principio">
+		<img src="Pics/Principio+4.png" alt="Cuarto principio" style="display:inline;">
+		<img src="Pics/conocimiento.png" alt="Segundo principio" style="float:right; max-width:585px; max-height:400px;">
 		<div class="carousel-caption">
 			<h3>Intercesión para el conocimiento</h3>
 			<p>Integrar aprendizaje y desempeño para preservar y difundir conocimiento</p>
 		</div>
 	</div>
 	<div class="item">
-		<img src="Pics/Principio+5.png" alt="Quinto principio">
+		<img src="Pics/Principio+5.png" alt="Quinto principio" style="display:inline;">
+		<img src="Pics/valores.png" alt="Segundo principio" style="float:right; max-width:585px; max-height:400px;">
 		<div class="carousel-caption">
 			<h3>Custodia de valores</h3>
 			<p>Defensa de la Dignidad Ontológica</p>

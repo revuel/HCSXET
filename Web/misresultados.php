@@ -1,3 +1,23 @@
+<?php
+	
+	require_once 'Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	if (isset($_GET['id_target']))
+	{
+		$id_target = $_GET['id_target']; // asignación estándar
+	}
+	else
+	{
+		$id_target = 1; // casos en los que se acceda a la página con la variable sin establecer
+	}
+	
+	$targets = $db->getAllTargetfromuser($u);
+	
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -24,6 +44,16 @@
 		<!-- JAVASCRIPT -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="JavaScript/bootstrap.js"></script>
+		
+		<script type="text/javascript">
+			$(function()
+			{
+			  $("#sel").change(function()
+			  {
+				window.location='Web/misresultados.php?id_target=' + this.value
+			  });
+			});
+		</script>
 	</head>
 	
 	<body>
@@ -38,7 +68,21 @@
 			<hr><br>
 			<div class="container  text-center">
 				<div class="row">
-					
+					<form class="form-horizontal" action="Web/talkr/callr.php" method="post">
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar estudio:</label>
+							<div class = "col-sm-6">
+								<select class="form-control" id="sel" name="target">
+									<?php foreach($targets as $i):?>
+										<option <?php if($i['id_target'] == $id_target):?> selected <?php endif?> value = '<?=$i['id_target']?>'>
+											<?=($i['nombre_target'])?>
+										</td>
+									<?php endforeach ?>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Comprobar</button>
+						</div>
+					</form>
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-md-6 col-sm-4 well">
