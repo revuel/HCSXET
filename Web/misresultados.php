@@ -39,6 +39,7 @@
 		
 		<style>
 			body { padding-top: 95px; }
+			#kludge { padding:150px;}
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -66,7 +67,7 @@
 		<main>
 			<h3 class="text-center">Comprobar resultados de un estudio</h3>
 			<hr><br>
-			<div class="container  text-center">
+			<div class="container well text-center" id="kludge">
 				<div class="row">
 					<form class="form-horizontal" action="Web/talkr/callr.php" method="post">
 						<div class="form-group form-group-sm">
@@ -84,7 +85,7 @@
 						</div>
 					</form>
 				</div>
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-xs-6 col-md-6 col-sm-4 well">
 						<p>Regla de entrada 1</p>
 					</div>
@@ -100,7 +101,7 @@
 						<p>Resultado</p>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</main>
 		
 		<!-- Pie de página-->

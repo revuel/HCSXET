@@ -34,27 +34,58 @@ vector <- c(args[1], args[2], args[3], args[4], args[5], args[6], args[7],
             args[8], args[9], args[10], args[11], args[12], args[13], args[14], 
             args[15])
 
-# For control purpose only
-fileConn<-file("output.txt")
-writeLines(vector, fileConn)
-close(fileConn)
+# Development usage
+# vector <- c(2.1000, 1.8333, 1.7667, 1.9000, 2.0333, 1.6667, 2.0667, 1.6333, 
+#             2.7333, 1.8667, 1.8000, 2.3000, 1.5667, 2.4000, 1.9667)
 
+# For control purpose only
+# fileConn <- file("output.txt")
+# writeLines(vector, fileConn)
+# close(fileConn)
+tryCatch( {
+  fileConn <- file("output.txt")
+  writeLines(vector, fileConn)
+   },
+  error = function (cond) {
+    
+  },
+  finally = {
+    close(fileConn)
+  })
 
 # Statistical plot saving
 # · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · #
 
 # Plot of the input values linear function form
-png(filename="mf.png", width=500, height=500)
-plot(vector, type="o", col="blue", xlab="Preguntas", ylab="Respuesta media", 
-     main="Valores medios de las respuestas a las preguntas basadas 
+tryCatch( {
+  png(filename="mf.png", width=500, height=500)
+  plot(vector, type="o", col="blue", xlab="Preguntas", ylab="Respuesta media", 
+       main="Valores medios de las respuestas a las preguntas basadas 
      en los principios de la CCP")
-dev.off()
+  dev.off()
+
+  },
+  error = function (cond) {
+    
+  },
+  finally = {
+    #dev.off()
+  })
 
 # Grouped Histogram of the answer values
-# vector <- as.integer(vector)
-# png(filename="hg.png", width=500, height=500)
-# hist(table(vector$Frequency))
-# dev.off()
+tryCatch( {
+  h <- hist(as.numeric(vector), freq = TRUE, right = TRUE, 
+            border = topo.colors(length(as.numeric(vector))))
+  png(filename="hg.png", width=500, height=500)
+  plot(h, main = "Histogram", xlab="mean of responses", ylab="Frequency")
+  dev.off()
+   },
+  error = function (cond) {
+    print(paste("Something went wrong ", cond, sep=""))
+  },
+  finally = {
+    #dev.off()
+  })
 
 # Fuzzy Item Structure set up
 # · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · #
@@ -132,8 +163,17 @@ dev.off()
 
 # Defuzzyfication?
 # · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · #
-r <- evalFIS(vector, hcFIS)
+tryCatch( {
+  r <- evalFIS(as.numeric(vector), hcFIS)
+  png(filename="resultado.png", width=500, height=500)
+  plot(r)
+  dev.off()
+   },
+  error = function (cond) {
+    print(paste("Something went wrong ", cond, sep=""))
+  },
+  finally = {
+    #dev.off()
+  })
 
-png(filename="resultado.png", width=500, height=500)
-plot(r)
-dev.off()
+
