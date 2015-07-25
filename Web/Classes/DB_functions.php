@@ -565,4 +565,26 @@ class DB_Functions
 			// Podríamos lanzar mensaje de excepción.
 		}
 	}
+	
+	// Seleccionar las listas de un usuario
+	public function getAllListfromuser($id) 
+	{
+		try
+		{
+			$sql = 'SELECT * FROM lista WHERE id_usuario = :id'; // Consulta
+			$consulta = $this->con->prepare($sql); // Preparación
+            $params = array(':id' => $id); // Array de parámetros de la consulta
+            $consulta->execute($params); // Ejecución
+			
+			$resultado = $consulta->fetchAll();
+			
+			return $resultado; // Devolver array
+		}
+		catch(PDOException $e)
+		{
+			// Podríamos lanzar mensaje de excepción.
+		}
+	}
+	
+	// Seleccionar los participantes de una lista
 }

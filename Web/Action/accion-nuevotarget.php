@@ -4,16 +4,36 @@
 	
 	$nombre = $_POST['nombre'];
 	$app = $_POST['app'];
-	$participantes = $_POST['participantes'];
 	
-	$myArray = explode(', ', $participantes);
-	//print_r($myArray);
+	if (isset($_POST['participantes']))
+	{
+		$participantes = $_POST['participantes'];
+		$myArray = explode(', ', $participantes);
+		print_r($myArray);
+	}
+	else if (isset($_POST['lista']))
+	{
+		$m = 0;
+		$lista = $_POST['lista'];
+		$db = new DB_Functions();
+		$participantesaux = $db->listaNombresparticipantelista($lista);
+		
+		foreach ($participantesaux as $row) {
+			$participantes[$m] = $row['email_destinatario'];
+			$m = $m + 1;
+		}
+		
+		$myArray = $participantes;
+		
+		$m = 0;
+	}
 	
 	$id_usuario = $_COOKIE['usuario'];
 
-	//echo ($nombre . ' ');
-	//echo ($app . ' ');
-	//print_r($participantes);
+	/*echo ($nombre . ' ');
+	echo ($app . ' ');
+	print_r($participantes);
+	echo ($lista . ' ');*/
 	
 	try
 	{
@@ -51,8 +71,6 @@
 		
 		// ir insertando a todos los participantes en la tabla participantes (si no existen) e ir haciendo entradas
 		// en la tabla valoraciones (e ir mandandoles un correo)
-		
-		
 		
 	}	
 	catch(PDOException $e)

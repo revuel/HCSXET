@@ -19,6 +19,7 @@
 		
 		<style>
 			body { padding-top: 70px; }
+			main { padding: 70px;}
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -37,6 +38,7 @@
 				<div class = "row well">
 					<form class="form-signin" role="form" action = "Estudio/accesoestudio.php" method = "post">
 						<h2 class="form-signin-heading text-center">Participar en un estudio</h2>
+						<br>
 						<div class = "col-xs-12 col-sm-6 col-md-offset-3">
 							<label class="control-label" for="email" >Correo electrónico</label>
 							<input type="email" class="form-control" id="email" placeholder="Introduzca su dirección de correo"  name="id_destinatario"required>

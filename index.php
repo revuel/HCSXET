@@ -20,6 +20,7 @@
 		
 		<style>
 			body { padding-top: 95px; }
+			.sha { text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;}
 		</style>
 		
 		<!-- JAVASCRIPT -->
@@ -88,7 +89,25 @@
 				<!--<div class="clearfix visible-xs"></div>-->
 			</div>
 		</div>
-		<div class = "container">
+		
+		<div class = "container" id="prin">
+			<hr>
+			<div class="row">
+				<div class="col-xs-12 col-md-6 col-sm-6 text-center well">
+					<h2 class="text-center">Listado de referencias</h2>
+					<a href="articulos.php" target="_blank" title="Artículos/Papers HCC/HCS/HCD">
+						<img class ="img-responsive center-block" src="Pics/references.jpg" alt="Personas de la HCC" ismap>
+					</a>
+				</div>
+				<div class="col-xs-12 col-md-6 col-sm-6 text-center well">
+					<h2 class="text-center">PFG</h2>
+					<a href="pfg.php" target="_blank" title="Proyecto de Fin de Grado">
+						<img class ="img-responsive center-block" src="Pics/pfg.jpg" alt="Personas de la HCC" ismap>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--<div class = "container">
 			<hr>
 			<div class="row">
 				<div class="col-xs-12 col-md-12 col-sm-12 text-center well">
@@ -105,7 +124,7 @@
 					<img class = "img-responsive center-block" src="Pics/explicaciondelaherramienta.png" alt="Explicación de la HCXET">
 				</div>
 			</div>
-		</div>
+		</div>-->
 		
 		<!-- Pie de página-->
 		<footer>

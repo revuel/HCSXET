@@ -1,3 +1,26 @@
+<?php
+
+	require_once 'Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	$u = $_COOKIE['usuario'];
+	
+	$listasUsuario = $db->getAllListfromuser($u);
+	
+	//print_r($listasUsuario[0][1]);
+	
+	if (isset($_GET['id_lista']))
+	{
+		$id_lista = $_GET['id_lista']; // asignación estándar
+	}
+	else
+	{
+		$id_lista = 1; // casos en los que se acceda a la página con la variable sin establecer
+	}
+	
+
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
@@ -26,6 +49,24 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		
 		<script src="JavaScript/bootstrap-tokenfield.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+			
+				$('#control').change(function() {
+				
+					if ($(this).is(':checked')) {
+						$('#tokenfield').tokenfield('disable');
+						$('#tokenfield').attr("placeholder", "Añadir participantes...");
+						$('#dd').prop('disabled', false);
+					} else {
+						$('#tokenfield').tokenfield('enable');
+						$('#tokenfield').attr("placeholder", "! Lista activada");
+						$('#dd').prop('disabled', true);
+					}
+				}); 
+			});
+		</script>
 		
 	</head>
 	
@@ -59,7 +100,7 @@
 											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Aplicación/Sistema" name = "app"></input>
 										</div>
 									</div>
-									<div class="form-group form-group-sm">
+									<div class="form-group form-group-sm" id="tk">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Añadir</label>
 										<div class="col-sm-10">
 											<input type = "text" class="form-control" id="tokenfield"  placeholder="Añadir participantes..." name = "participantes"></input>
@@ -67,15 +108,15 @@
 									</div>
 									<div class="checkbox">
 										<label>
-										  <input type="checkbox"> Utilizar lista </input>
+										  <input type="checkbox" id="control"> Utilizar lista </input>
 										</label>
 									</div><br>
-									<select class="form-control" disabled>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
+									<select id = "dd" class="form-control" name = "lista" disabled>
+										<?php foreach($listasUsuario as $i):?>
+											<option <?php if($i['id_lista'] == $id_lista):?> selected <?php endif?> value = '<?=$i['id_lista']?>'>
+												<?=($i[1])?>
+											</td>
+										<?php endforeach ?>
 									</select>
 									<hr>
 									<div class = "row text-center">
