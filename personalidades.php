@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+	
+		<title> HCXET | Personas </title>
 		 
 		<!-- METADATOS -->
 		<meta charset="utf-8">
@@ -14,11 +23,10 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 95px;}
 			.fixheight { max-height:200px;}
-			
 			@media 
 			only screen and (max-width: 767px),
 			(min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -29,11 +37,13 @@
 		</style>
 		
 		<!-- JAVASCRIPT -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="JavaScript/bootstrap.js"></script>
 	</head>
 	
 	<body>
 		<!-- Cabecera -->
-		<header>
+		<header class="pushdown">
 			<?php include 'Include/cabecera1.php'; ?>
 		</header>
 		
@@ -48,28 +58,28 @@
 				<div class="row">
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/hoffman.jpg" alt="Robert R. Hoffman" class="img-rounded img-responsive fixheight">
+							<img src="Pics/hoffman.png" alt="Robert R. Hoffman" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>Robert R. Hoffman</h3>
-								<a href="http://www.ihmc.us/groups/rhoffman/">Descripción</a>
+								<a href="http://www.ihmc.us/groups/rhoffman/" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/maguire.jpg" alt="Martin Maguire" class="img-rounded img-responsive fixheight">
+							<img src="Pics/maguire.png" alt="Martin Maguire" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>Martin Maguire</h3>
-								<a href ="http://www.lboro.ac.uk/departments/lds/staff/dr-martin-maguire.html">Descripción</a>
+								<a href ="http://www.lboro.ac.uk/departments/lds/staff/dr-martin-maguire.html" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/sebe.jpg" alt="Nicu Sebe" class="img-rounded img-responsive fixheight">
+							<img src="Pics/sebe.png" alt="Nicu Sebe" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>Nicu Sebe</h3>
-								<a href="http://disi.unitn.it/~sebe/">Descripción</a>
+								<a href="http://disi.unitn.it/~sebe/" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
@@ -78,28 +88,28 @@
 				<div class="row">
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/canny.jpeg" alt="John Canny" class="img-rounded img-responsive fixheight">
+							<img src="Pics/canny.png" alt="John Canny" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>John F. Canny</h3>
-								<a href="http://www.eecs.berkeley.edu/Faculty/Homepages/canny.html">Descripción</a>
+								<a href="http://www.eecs.berkeley.edu/Faculty/Homepages/canny.html" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/nunes.jpg" alt="Isabella Nunes" class="img-rounded img-responsive fixheight">
+							<img src="Pics/nunes.png" alt="Isabella Nunes" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>Isabel L. Nunes</h3>
-								<a href="http://www.unidemi.com/researchers/profile/id/9">Descripción</a>
+								<a href="http://www.unidemi.com/researchers/profile/id/9" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/flach.jpg" alt="John Flach" class="img-rounded img-responsive fixheight">
+							<img src="Pics/flach.png" alt="John Flach" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>John M. Flach</h3>
-								<a href="http://cecs.wright.edu/directory/john-flach">Descripción</a>
+								<a href="http://cecs.wright.edu/directory/john-flach" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
@@ -108,57 +118,55 @@
 				<div class="row">
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/hayes.jpg" alt="Pat Hayes" class="img-rounded img-responsive fixheight">
+							<img src="Pics/hayes.png" alt="Pat Hayes" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>Patrick Hayes</h3>
-								<a href="http://www.ihmc.us/groups/phayes/">Descripción</a>
+								<a href="http://www.ihmc.us/groups/phayes/" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/liu.jpg" alt="Fiona Yan Liu" class="img-rounded img-responsive fixheight">
+							<img src="Pics/liu.png" alt="Fiona Yan Liu" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>Fiona Yan Liu</h3>
-								<a href="http://www4.comp.polyu.edu.hk/~csyliu/">Descripción</a>
+								<a href="http://www4.comp.polyu.edu.hk/~csyliu/" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 text-center">
 						<div class="thumbnail">
-							<img src="Pics/jaimes.jpg" alt="Alejandro Jaimes" class="img-rounded img-responsive" style="min-height:200px;">
+							<img src="Pics/jaimes.png" alt="Alejandro Jaimes" class="img-rounded img-responsive" style="min-height:200px;">
 							<div class="caption">
 								<h3>Alejandro Jaimes</h3>
-								<a href ="http://www.alexjaimes.com/">Descripción</a>
+								<a href ="http://www.alexjaimes.com/" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+				<!-- Cuarta Fila -->
 				<div class="row">
 					<div class="col-sm-6 col-md-6 text-center">
 						<div class="thumbnail">
-							<img src="Pics/kling.jpg" alt="Rob Kling" class="img-rounded img-responsive fixheight">
+							<img src="Pics/kling.png" alt="Rob Kling" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>En memoria de Robert Kling</h3>
-								<a href ="http://rkcsi.indiana.edu/robkling.html">Descripción</a>
+								<a href ="http://rkcsi.indiana.edu/robkling.html" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-6 text-center">
 						<div class="thumbnail">
-							<img src="Pics/leighstar.jpg" alt="Susan Leigh Star" class="img-rounded img-responsive fixheight">
+							<img src="Pics/leighstar.png" alt="Susan Leigh Star" class="img-rounded img-responsive fixheight">
 							<div class="caption">
 								<h3>En memoria de Susan Leigh Star</h3>
-								<a href="http://www.utimes.pitt.edu/?p=11769">Descripción</a>
+								<a href="http://www.utimes.pitt.edu/?p=11769" target="_blank">Descripción</a>
 							</div>
 						</div>
 					</div>
-				
 				</div>
 			</div>
 		</main>
-		
 		
 		<!-- Pie de página-->
 		<footer>

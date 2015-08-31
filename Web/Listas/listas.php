@@ -1,37 +1,49 @@
 <?php
+
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
 	
+	/* 
+		Esta página escoge un estudio a través de un formulario y envía ese dato 
+		a otro script para su procesamiento.
+		
+	*/
+	
+	// Comprobando autorización de sesión
+	include '../Session/checksession.php'; // Comprobando autorización
+	
+	// Importando e instanciando clase consultas
 	require_once '../Classes/DB_functions.php';
 	$db = new DB_Functions();
 	
 	$u = $_COOKIE['usuario'];
 	
-	$nombreslista = $db->listaParcipantesIdusuario($u);
+	// Consultas
+	$nombreslista = $db->listaParcipantesIdusuario($u); // Nombres de las listas
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
 	
-	//print_r($nombreslista);
-	
-	// Has de recoger el id_lista del nombre_lista que hay en el select pillado.
-	// Pásalo como valor ahí abajo.
-	
-	
-	//print_r($nombresparticipantes);
-	
-	if (isset($_GET['id_lista']))
-	{
+	// Determinar lista seleccionada
+	if (isset($_GET['id_lista'])) {
 		$id_lista = $_GET['id_lista']; // asignación estándar
-	}
-	else
-	{
-		$id_lista = 1; // casos en los que se acceda a la página con la variable sin establecer
+	} else {
+		$id_lista = $db->minIdlista($u); // Casos en los que se acceda a la página con la variable sin establecer
 	}
 	
-	$nombresparticipantes = $db->listaNombresparticipantelista($id_lista);
-	
+	if(isset($id_lista)){
+		$nombresparticipantes = $db->listaNombresparticipantelista($id_lista); // Participantes de la lista seleccionada
+	}
 ?>
 
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<title> HCXET | <?=$nomuser?> </title>
 		
 		<base href="../../">
 		 
@@ -46,16 +58,13 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 70px; }
-			
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
 		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-		
+		<script src="JavaScript/hcxet.js"></script>
 		<script type="text/javascript">
+			// Cambiar lista seleccionada en el select
 			$(function()
 			{
 			  $("#sel").change(function()
@@ -64,7 +73,6 @@
 			  });
 			});
 		</script>
-		
 	</head>
 	
 	<body>
@@ -75,20 +83,21 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<h3 class="text-center">Página principal de gestión</h3>
-			<hr><br>
+			<h3 class="text-center">Ver listas</h3>
+			<hr>
 			<div class = "container">
 				<div class="container row">
-					<div class="col-xs-6 col-md-4 well">
+					<div class="col-xs-12 col-md-4 well">
 						<?php include '../Include2/opcioneslista.php'; ?>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-8 well" style="max-height:340px;overflow-y: scroll;">
+					<div class="col-xs-12 col-sm-6 col-md-8 well" style="height:338.8px; overflow-y: scroll;">
 						<h4 class = "text-center">Visualizando listas</h4><br>
 					
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
 							<div class = "col-sm-6">
 								<select class="form-control" id="sel">
+								<!-- Cargar  el select con los nombres de las listas -->
 								<?php foreach($nombreslista as $i):?>
 									<option <?php if($i['id_lista'] == $id_lista):?> selected <?php endif?> value = '<?=$i['id_lista']?>'>
 										<?=($i['nombre_lista'])?>
@@ -106,12 +115,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ($nombresparticipantes as $j):?>
+								<!-- Cargar tabla con los nombres de los participantes de la lista actual -->
+								<?php if(isset($nombresparticipantes)){foreach ($nombresparticipantes as $j):?>
 									<tr>
 										<td><?=($j['id_destinatario'])?></td>
 										<td><?=($j['email_destinatario'])?></td>
 									</tr>
-								<?php endforeach ?>
+								<?php endforeach; } ?>
 							</tbody>
 						</table>
 						<br>
@@ -122,7 +132,7 @@
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../../Include/pie.php'; ?>
+			<?php include '../Include2/pie2.php'; ?>
 		</footer>
 	</body>
 </html>

@@ -1,0 +1,7 @@
+INSTRUCCIONES
+
+	Nueva instalación: 	Utilizar BD-empty.sql
+	Hacer pruebas:		Utilizar BD-test.sql
+
+No se recomienda el uso de BD-feeded.sql
+

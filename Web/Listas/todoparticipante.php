@@ -1,20 +1,44 @@
 <?php
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
 	
+	/* 
+		Página para visualizar todos los correos a quines un usuario invitó en 
+		alguna ocasión a algún estudio.
+	*/
+	
+	// Comprobando autorización de sesión
+	include '../Session/checksession.php'; // Comprobando autorización
+	
+	// Importando e instanciando clase consultas
 	require_once '../Classes/DB_functions.php';
 	$db = new DB_Functions();
 	
 	$u = $_COOKIE['usuario'];
 	
+	// Consultas
 	$allparticipantes = $db->listaParcipantestodosIdusuario($u);
-	
-	//print_r($nombreslista);
-	
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
 ?>
 
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		<title> HCXET | <?=$nomuser?> </title>
 		
 		<base href="../../">
 		 
@@ -29,14 +53,11 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 70px; }
-			
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
-
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="JavaScript/hcxet.js"></script>
 	</head>
 	
 	<body>
@@ -47,14 +68,14 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<h3 class="text-center">Página principal de gestión</h3>
-			<hr><br>
+			<h3 class="text-center">Ver a todos sus invitados</h3>
+			<hr>
 			<div class = "container">
 				<div class="container row">
-					<div class="col-xs-6 col-md-4 well">
+					<div class="col-xs-12 col-md-4 well">
 						<?php include '../Include2/opcioneslista.php'; ?>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-8 well" style="max-height:340px;overflow-y: scroll;">
+					<div class="col-xs-12 col-sm-6 col-md-8 well" style="height:339.8px;overflow-y: scroll;">
 						<h4 class = "text-center">Visualizando a todos los participantes</h4><br>
 						<table class="table table-bordered">
 							<thead>
@@ -64,6 +85,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<!-- Cargar a todos los invitados de un usuario -->
 								<?php foreach($allparticipantes as $i):?>
 									<tr>
 										<td><?=($i[0])?></td>
@@ -80,7 +102,7 @@
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../../Include/pie.php'; ?>
+			<?php include '../Include2/pie2.php'; ?>
 		</footer>
 	</body>
 </html>

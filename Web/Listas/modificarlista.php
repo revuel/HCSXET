@@ -1,29 +1,54 @@
 <?php
+
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
 	
+	/* 
+		Esta prepara un formulario con los miembros de una lista seleccionada en un
+		select, para modificar los datos y enviarlos al script de actualización que
+		conecta con la base de datos.
+		
+	*/
+	
+	// Comprobando autorización de sesión
+	include '../Session/checksession.php'; // Comprobando autorización
+	
+	// Importando e instanciando clase consultas
 	require_once '../Classes/DB_functions.php';
 	$db = new DB_Functions();
 	
+	// Cookie
 	$u = $_COOKIE['usuario'];
 	
-	$nombreslista = $db->listaParcipantesIdusuario($u);
+	// Consultas
+	$nombreslista = $db->listaParcipantesIdusuario($u); // Obtener nombres de las listas del usuario
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
 	
-		//print_r($nombreslista);
-	
-	// Has de recoger el id_lista del nombre_lista que hay en el select pillado.
-	// Pásalo como valor ahí abajo.
-	
-	
-	//print_r($nombresparticipantes);
-	
-	if (isset($_GET['id_lista']))
-	{
-		$id_lista = $_GET['id_lista']; // asignación estándar
+	// Determinar lista seleccionada
+	if (isset($_GET['id_lista'])) {
+		
+		// Control antifraude en el GET
+		$aux = $_GET['id_lista'];
+		$control = $db->getIdusuarioporlista($aux);
+		
+		if ($u == $control){
+			// # usuario actual propietario de lista
+			$id_lista = $_GET['id_lista']; // asignación estándar cogemos GET
+		} else {
+			// # usuario actual NO propietario de lista
+			$id_lista = $db->minIdlista($u); // no cogemos GET
+		}
+	} else {
+		$id_lista = $db->minIdlista($u); // casos en los que se acceda a la página con la variable sin establecer
 	}
-	else
-	{
-		$id_lista = 1; // casos en los que se acceda a la página con la variable sin establecer
-	}
 	
+	// Obtener los nombres de los participantes de la lista seleccionada actualmente
 	$nombresparticipantes = $db->listaNombresparticipantelista($id_lista);
 	
 ?>
@@ -31,7 +56,15 @@
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		<title> HCXET | <?=$nomuser?> </title>
 		
 		<base href="../../">
 		 
@@ -47,17 +80,14 @@
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 70px; }
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		
 		<script src="JavaScript/bootstrap-tokenfield.js"></script>
-		
+		<script src="JavaScript/hcxet.js"></script>
 		<script type="text/javascript">
+			// Cambiando selección de lista
 			$(function()
 			{
 			  $("#sel").change(function()
@@ -76,11 +106,11 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<h3 class="text-center">Página principal de gestión</h3>
-			<hr><br>
+			<h3 class="text-center">Modificar lista</h3>
+			<hr>
 			<div class = "container">
 				<div class="container row">
-					<div class="col-xs-6 col-md-4 well">
+					<div class="col-xs-12 col-md-4 well">
 						<?php include '../Include2/opcioneslista.php'; ?>
 					</div>
 					<div style="height:340px;" class="col-xs-12 col-sm-6 col-md-8 well " >
@@ -90,6 +120,7 @@
 								<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar lista:</label>
 								<div class = "col-sm-6">
 									<select class="form-control" id="sel" name="lista">
+										<!-- Cargar nombres de listas del usuario -->
 										<?php foreach($nombreslista as $i):?>
 											<option <?php if($i['id_lista'] == $id_lista):?> selected <?php endif?> value = '<?=$i['id_lista']?>'>
 												<?=($i[0])?>
@@ -105,6 +136,7 @@
 							</div>
 							
 							<textarea class="form-control" rows="7" id="tokenfield" name="email" required>
+								<!-- Cargar emails de los miembros de la lista actual -->
 								<?php foreach ($nombresparticipantes as $j):?>
 									<?=($j['email_destinatario']).','?>
 								<?php endforeach ?>
@@ -122,7 +154,7 @@
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../../Include/pie.php'; ?>
+			<?php include '../Include2/pie2.php'; ?>
 		</footer>
 		<!-- TokenFields Bootstrap (control)-->
 		<script>

@@ -1,7 +1,41 @@
+<?php
+
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Esta es la página de alta a un nuevo usuario. Si existe sesión iniciada, se
+		desvía del formulario de registro a la página principal de gestión
+	*/
+	
+	//creamos la sesion
+	session_start();
+
+	// Si hay sesión iniciada, nos trasladamos a la página de gestión
+	if(isset($_SESSION['id'])) {
+	  header("Location: http://localhost/HCXET/Web/start.php");
+	  exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		<title> HCXET | Registro </title>
 		
 		<base href="../">
 		 
@@ -16,56 +50,74 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 95px; }
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="JavaScript/bootstrap.js"></script>
+		<script>
+			$(document).ready(function() { 
+			
+				 // refresh captcha
+				 $('img#refresh').click(function() {  
+						
+						change_captcha();
+				 });
+				 
+				 function change_captcha()
+				 {
+					document.getElementById('captcha').src="Captcha/get_captcha.php?rnd=" + Math.random();
+				 }
+			});
+		</script>
 	</head>
 	
 	<body>
 		<!-- Cabecera -->
-		<header>
+		<header class="pushdown">
 			<?php include '../Include/cabecera1.php'; ?>
 		</header>
 		
 		<!-- Contenido principal -->
 		<main>
 			<div class="container">
-				<h2 class = "text-center">Formulario de registro</h2>
-				<p class = "text-center">Para poder enviar la encuesta y 
-				así poder tener una noción del grado de cumplimiento de los principios 
-				de la Computación Centrada en la Persona que un sistema ofrece, es necesario disponer
-				de una cuenta en este sitio web.</p>
 				<div class = "row well">
-					<form class="form-signin" role="form">
+					<h2 class = "text-center">Formulario de registro</h2>
+					<p class = "text-center">Regístrate para poder evaluar el grado de cumplimiento de los principios de
+					la Computación Centrada en la Persona enviando encuestas a los invitados que desee.</p>
+					<hr>
+					<form class="form-signin" role="form" action="Register/alta-action.php" method="post">
 						<div class = "col-xs-12 col-sm-6 col-md-offset-3">
 							<label class="control-label" for="email">Correo electrónico</label>
-							<input type="email" class="form-control" id="email" placeholder="Introduzca su dirección de correo" required>
+							<input type="email" class="form-control" name="email" placeholder="Introduzca su dirección de correo" required>
 							<br>	
 							<label class="control-label" for="pwd">Contraseña</label>       
-							<input type="password" class="form-control" id="estudio" placeholder="Determine su contraseña de acceso" required>
+							<input type="password" class="form-control" name="pwd" placeholder="Determine su contraseña de acceso" required>
 							<br>	
-							<label class="control-label" for="pwd">Nombre</label>       
-							<input type="text" class="form-control" id="codigo" placeholder="Introduzca su nombre (opcional)">
+							<label class="control-label" for="name">Nombre</label>       
+							<input type="text" class="form-control" name="name" placeholder="Introduzca su nombre (opcional)">
 							<br>
-							<label class="control-label" for="pwd">Apellidos</label>       
-							<input type="text" class="form-control" id="codigo" placeholder="Introduzca sus apellidos (opcional)">
+							<label class="control-label" for="surname">Apellidos</label>       
+							<input type="text" class="form-control" name="surname" placeholder="Introduzca sus apellidos (opcional)">
 							<br>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme</button>
+							<div id="wrap" align="center">
+								<img src="Captcha/get_captcha.php" alt="No load" id="captcha" title="Captcha image"/>
+								<img src="Captcha/refresh.jpg" width="25" alt="" id="refresh" title="Regenerar"/>
+								<br>
+								<input type="text" class="form-control" name="code" id="code" placeholder="Introduzca el código de la imagen superior" required>
+							</div>
+							<br>
+							<button class="btn btn-lg btn-primary btn-block" type="submit" id="Send">Registrarme</button>
 						</div>
 						
 					</form>
 				</div>
 			</div>
-
 		</main>
-		
-		
+	
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../Include/pie.php'; ?>
+			<?php include '../Include/adorno.php'; ?>
 		</footer>
 	</body>
 </html>

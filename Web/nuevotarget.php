@@ -1,30 +1,55 @@
 <?php
 
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Esta página envía los datos de un formulario (que pueden ser tokenfields)
+		para la posterior creación de un nuevo estudio.
+		
+	*/
+	
+	// Comprobación de autorización 
+	include 'Session/checksession.php'; // Comprobando autorización
+
+	// Importando e instanciando clase consultas
 	require_once 'Classes/DB_functions.php';
 	$db = new DB_Functions();
 	
 	$u = $_COOKIE['usuario'];
 	
-	$listasUsuario = $db->getAllListfromuser($u);
+	// Consultas
+	$listasUsuario = $db->getAllListfromuser($u); // Obtener las listas de un usuario
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
 	
-	//print_r($listasUsuario[0][1]);
-	
-	if (isset($_GET['id_lista']))
-	{
+	// Determinar qué lista seleccionar
+	if (isset($_GET['id_lista'])) {
 		$id_lista = $_GET['id_lista']; // asignación estándar
 	}
-	else
-	{
-		$id_lista = 1; // casos en los que se acceda a la página con la variable sin establecer
-	}
-	
-
+	else {
+		$id_lista = 1; // casos en los que se acceda a la página con la variable GET sin establecer
+	}	
 ?>
 
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		
+		<title> HCXET | <?=$nomuser?> </title>
 		
 		<base href="../">
 		 
@@ -40,17 +65,14 @@
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-tokenfield.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 95px; }
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		
 		<script src="JavaScript/bootstrap-tokenfield.js"></script>
-		
+		<script src="JavaScript/hcxet.js"></script>
 		<script>
+			// Activar el uso alternativo entre lista o tokenfields
 			$(document).ready(function() {
 			
 				$('#control').change(function() {
@@ -79,13 +101,13 @@
 		<!-- Contenido principal -->
 		<main>
 			<h3 class="text-center">Nuevo estudio</h3>
-			<hr><br>
+			<hr>
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2">
-						<h4 class = "text-center">Introduzca los datos del sistema a evaluar</h4>
 						<div class = "row">
 							<div class="col-xs-6 col-sm-4 col-md-8 col-md-offset-2 well">
+							<h4 class = "text-center">Introduzca los datos del sistema a evaluar</h4>
 								<form class="form-horizontal" action = "Web/Action/accion-nuevotarget.php" method = "post">
 									<hr>
 									<div class="form-group form-group-sm">
@@ -97,21 +119,24 @@
 									<div class="form-group form-group-sm">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Sistema</label>
 										<div class="col-sm-10">
-											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Aplicación/Sistema" name = "app"></input>
+											<input class="form-control" type="text" id="formGroupInputSmall" placeholder="Aplicación/Sistema/Enlace" name = "app"></input>
 										</div>
 									</div>
-									<div class="form-group form-group-sm" id="tk">
+									<!--<div class="form-group form-group-sm" id="tk">
 										<label class="col-sm-2 control-label" for="formGroupInputSmall">Añadir</label>
 										<div class="col-sm-10">
-											<input type = "text" class="form-control" id="tokenfield"  placeholder="Añadir participantes..." name = "participantes"></input>
+											<input type = "text" class="form-control" id="tokenfield"  placeholder="Añadir participantes..." name = "participantes" required></input>
 										</div>
-									</div>
+									</div>-->
+									<textarea class="form-control" rows="7" id="tokenfield" placeholder="Añadir participantes..." name = "participantes"required></textarea>
+									<br>
 									<div class="checkbox">
 										<label>
 										  <input type="checkbox" id="control"> Utilizar lista </input>
 										</label>
 									</div><br>
-									<select id = "dd" class="form-control" name = "lista" disabled>
+									<select id = "dd" class="form-control" name = "lista" disabled required>
+										<!-- Cargar el select con las listas del usuario -->
 										<?php foreach($listasUsuario as $i):?>
 											<option <?php if($i['id_lista'] == $id_lista):?> selected <?php endif?> value = '<?=$i['id_lista']?>'>
 												<?=($i[1])?>
@@ -132,7 +157,7 @@
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../Include/pie.php'; ?>
+			<?php include 'Include2/pie2.php'; ?>
 		</footer>
 		
 		<!-- TokenFields Bootstrap (control)-->

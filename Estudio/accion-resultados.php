@@ -1,7 +1,29 @@
 <?php
 
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Este script recoge las respuestas establecidas por el participante de una
+		encuesta y carga dichos valores en la base de datos.
+	*/
+
+	// Control de acceso: comprobando que haya sido superado el acceso como participante
+	if (!isset($_COOKIE['destinatario']) || !isset($_COOKIE['target'])) {
+		header("Location: http://localhost/HCXET/Estudio/formestudio.php"); 
+		die(); // Podría comprobarse la sesión en lugar de las cookies..
+	}
+
+	// Importando clase de consultas
 	require_once '../Web/Classes/DB_functions.php';
 	
+	// Captura de datos del formulario
 	$destinatario = $_POST['destinatario'];
 	$target = $_POST['target'];
 	//$token = $_POST['token'];
@@ -21,38 +43,25 @@
 	$op14 = $_POST['optradio14'];
 	$op15 = $_POST['optradio15'];
 	
-	//echo($destinatario .' '.  $target .' '. $op1 .' '. $op2 .' '. $op3 .' '. $op4 .' '. $op5 .' '. $op6 .' '. $op7 .' '. $op8 .' '. $op9 .' '. $op10 .' '. $op11 .' '. $op12 .' '. $op13 .' '. $op14 .' '. $op15);
-	
-	try
-	{
+	try {
+		// Instanciar objeto de consultas
 		$db = new DB_Functions();
-		// Seleccionar id_target e id_destinatario segun los nombres de target y de destinatario de la BD
-		/*$destinatario = $db->getIddestinatario($destinatario);
-			
-		$target = $db->getIdtarget($target);*/
 		
-		// Actualizar campos
+		// Actualizar campos (llamada a método)
 		$db->setResultados($destinatario, $target, $op1, $op2, $op3, $op4, $op5, $op6, $op7, $op8, $op9, $op10, $op11, $op12, $op13, $op14, $op15);
 		
-		// Remover cookies auxiliares
-		if (isset($_COOKIE['destinatario'])) 
-		{
+		// Destruir cookies auxiliares
+		if (isset($_COOKIE['destinatario'])) {
 			unset($_COOKIE['destinatario']);
 			unset($_COOKIE['target']);
 			setcookie('destinatario', null, -1, '/');
 			setcookie('target', null, -1, '/');
-			//return true;
-		}
-		else 
-		{
-			//return false;
-		}
-	}	
-	catch(PDOException $e)
-	{
+		} 
+	} catch(PDOException $e) {
 		echo("Error: " + $e);
 	}
 	
+	// Trasladarnos a la pantalla principal
 	header("Location: http://localhost/HCXET/"); // Tal vez llevar a una pantalla de agradecimiento
 	die();
 ?>

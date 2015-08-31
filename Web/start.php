@@ -1,7 +1,34 @@
+<?php 
+	
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Página principal de gestión.
+	*/
+	
+	// Comprobación de autorización
+	include 'Session/checksession.php'; // Comprobando autorización
+	
+	// Importando e instanciando clase consultas
+	require_once 'Classes/DB_functions.php';
+	$db = new DB_Functions();
+	
+	// Consultas (con la cookie para el id)
+	$u = $_COOKIE['usuario'];
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
+?>
+
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<title> HCXET | <?=$nomuser?> </title>
 		
 		<base href="../">
 		 
@@ -16,14 +43,12 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 95px; }
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="JavaScript/bootstrap.js"></script>
+		<script src="JavaScript/hcxet.js"></script>
 	</head>
 	
 	<body>
@@ -34,10 +59,11 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<h3 class="text-center">Página principal de gestión</h3>
-			<hr><br>
+			<h3 class="text-center">Inicio</h3>
+			<hr>
 			<div class="container well text-center">
 				<div class="row">
+					<h4 class = "text-center">Acciones a realizar</h4>
 					<div class="col-xs-6 col-md-4 col-sm-4">
 						<a href="Web/nuevotarget.php">
 							<img class = "img-responsive center-block" src="Pics/nuevaencuesta.png" alt="Crear nueva encuesta" title = "Pulse para crear una nueva encuesta">
@@ -47,11 +73,11 @@
 						</a>
 					</div>
 					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/Listas/listas.php?id_lista=1">
+						<a href="Web/Listas/listas.php">
 						<img class = "img-responsive center-block" src="Pics/mislistas.png" alt="Lista de direcciones" title = "Gestione sus listas de participantes"></a>
 					</div>
 					<div class="col-xs-6 col-md-4 col-sm-4">
-						<a href="Web/misresultados.php?id_lista=1">
+						<a href="Web/misresultados.php">
 						<img class = "img-responsive center-block" src="Pics/misresultados.png" alt="Resultados de mis encuestas" title = "Resultados de sus estudios">
 					</div>
 				</div>
@@ -60,7 +86,7 @@
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../Include/pie.php'; ?>
+			<?php include 'Include2/pie2.php'; ?>
 		</footer>
 	</body>
 </html>

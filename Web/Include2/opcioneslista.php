@@ -1,5 +1,16 @@
 <?php
-/* OPCIONES DEL PANEL IZQUIERDO DE LAS LISTAS */
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Archivo de inclusión panel lateral izquierdo en gestión de listas.
+	*/
 ?>
 <h4 class = "text-center">Acciones</h4>
 <ul class="nav nav-sidebar">

@@ -1,10 +1,20 @@
 <?php
-
-// Clase de configuración de la conexión
-
-define('DB_USER', "root");				// Nombre de tu usuario de phpmyadmin
-define('DB_PASSWORD', ""); 				// Tu contraseña de phpmyadmin 
-define('DB_DATABASE', "hcsxetdb"); 		// Nombre de tu base de datos
-define('DB_SERVER', "localhost");  		// Nombre del servidor
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Script de inicialización
+	*/
+	
+	define('DB_USER', "root");				// Nombre de tu usuario de phpmyadmin
+	define('DB_PASSWORD', ""); 				// Tu contraseña de phpmyadmin 
+	define('DB_DATABASE', "hcsxetdb"); 		// Nombre de tu base de datos
+	define('DB_SERVER', "localhost");  		// Nombre del servidor
 
 ?>

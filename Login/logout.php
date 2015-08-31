@@ -1,5 +1,18 @@
 <?php
-
+	
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Este script elimina cualquier sesión que esté activa.
+	*/
+	
 	// Destruir todas las variables de sesión.
 	$_SESSION = array();
 
@@ -16,6 +29,7 @@
 	// Finalmente, destruir la sesión.
 	session_destroy();
 
+	// Traslado a la página home
 	header("Location: http://localhost/HCXET/");
 	die();
 ?>

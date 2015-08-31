@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		
+		<title> HCXET | Participa </title>
 		
 		<base href="../">
 		 
@@ -16,29 +25,26 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
-		
-		<style>
-			body { padding-top: 70px; }
-			main { padding: 70px;}
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="JavaScript/bootstrap.js"></script>
 	</head>
 	
 	<body>
 		<!-- Cabecera -->
-		<header>
+		<header class="pushdown">
 			<?php include '../Include/cabecera1.php'; ?>
 		</header>
-		
+		<br>
 		<!-- Contenido principal -->
 		<main>
 			<div class = "container">
-			<br>
 				<div class = "row well">
 					<form class="form-signin" role="form" action = "Estudio/accesoestudio.php" method = "post">
 						<h2 class="form-signin-heading text-center">Participar en un estudio</h2>
-						<br>
+						<hr>
 						<div class = "col-xs-12 col-sm-6 col-md-offset-3">
 							<label class="control-label" for="email" >Correo electrónico</label>
 							<input type="email" class="form-control" id="email" placeholder="Introduzca su dirección de correo"  name="id_destinatario"required>
@@ -58,7 +64,7 @@
 		</main>
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../Include/pie.php'; ?>
+			<?php include '../Include/adorno.php'; ?>
 		</footer>
 	</body>
 </html>

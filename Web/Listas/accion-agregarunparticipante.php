@@ -1,40 +1,50 @@
 <?php
 
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Este script agrega un email de un participante a una lista de correos de un
+		usuario en la base de datos.
+	*/
+	
+	// Comprobando autorización de sesión
+	include '../Session/checksession.php'; // Comprobando autorización
+	
+	// Importando clase consultas
 	require_once '../Classes/DB_functions.php';
 	
+	// Captura de datos
 	$lista = $_POST['lista'];
 	$email = $_POST['email'];
 	
-	echo ($lista . ' ');
-	echo ($email . ' ');
-	
-	try
-	{
+	try {
+		// Instanciando clase consultas
 		$db = new DB_Functions();
 		
 		// Comprobar si el participante existe o no
-		// si existe seleccionas su id y la enchufas en contiene
 		$id_dest_actual = $db->existeDestinatario($email);
 		
-		if ($id_dest_actual != false)
-		{
-			//echo('<br> verdadero ' . $id_dest_actual); // Si existe cojo su id y lo añadimos a lista
-			$db->agregarParticipantealista($lista, $id_dest_actual);
+		if ($id_dest_actual != false) {
+			// # participante existe
+			$db->agregarParticipantealista($lista, $id_dest_actual); // Alta tabla listas (simplemente agregarlo a la lista)
+		} else {
+			// # participante NO existe
+			$db->nuevoDestinatario($email); // Alta del participante en la tabla destinatario
+			$id_dest_actual = $db->existeDestinatario($email); // Capturar id del participante recién creado
+			$db->agregarParticipantealista($lista, $id_dest_actual); // Alta tabla listas
 		}
-		else
-		{
-			//echo('<br>  falso');
-			// Si no existe, lo creo, cojo su id y lo añadimos a lista
-			$db->nuevoDestinatario($email);
-			$id_dest_actual = $db->existeDestinatario($email); // ya sabemos que existe porque lo acabo de crear... reciclando y eso...
-			$db->agregarParticipantealista($lista, $id_dest_actual);
-		}
-	}	
-	catch(PDOException $e)
-	{
+	} catch(PDOException $e) {
 		echo("Error: " + $e);
 	}
 	
-	header("Location: http://localhost/HCXET/Web/Listas/nuevoparticipante.php"); // Tal vez llevar a una pantalla de agradecimiento
+	// Nos trasladamos a la página del action de invocación
+	header("Location: http://localhost/HCXET/Web/Listas/nuevoparticipante.php");
 	die();
 ?>

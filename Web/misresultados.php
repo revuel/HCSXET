@@ -1,27 +1,55 @@
 <?php
 	
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Esta página escoge un estudio a través de un formulario y envía ese dato 
+		a otro script para su procesamiento.
+		
+	*/
+	
+	// Comprobando autorización de sesión
+	include 'Session/checksession.php'; // Comprobando autorización
+	
+	// Importando e instanciando clase consultas
 	require_once 'Classes/DB_functions.php';
 	$db = new DB_Functions();
 	
 	$u = $_COOKIE['usuario'];
 	
-	if (isset($_GET['id_target']))
-	{
+	// Determinando el estudio actualmente seleccionado
+	if (isset($_GET['id_target'])) {
 		$id_target = $_GET['id_target']; // asignación estándar
-	}
-	else
-	{
-		$id_target = 1; // casos en los que se acceda a la página con la variable sin establecer
+	} else {
+		$id_target = $db->getMintarget($u);// acceso a la página con la variable sin establecer
 	}
 	
+	// Consultas
 	$targets = $db->getAllTargetfromuser($u);
-	
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
 ?>
 
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+	
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		
+		<title> HCXET | <?=$nomuser?> </title>
 		
 		<base href="../">
 		 
@@ -36,17 +64,19 @@
 		<link rel="stylesheet" href="CSS/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<style>
-			body { padding-top: 95px; }
 			#kludge { padding:150px;}
 		</style>
 		
 		<!-- JAVASCRIPT -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="JavaScript/bootstrap.js"></script>
+		<script src="JavaScript/hcxet.js"></script>
 		
 		<script type="text/javascript">
+			// Cambio de valor en el select, recargar página con GET actualizado
 			$(function()
 			{
 			  $("#sel").change(function()
@@ -65,14 +95,15 @@
 		
 		<!-- Contenido principal -->
 		<main>
-			<h3 class="text-center">Comprobar resultados de un estudio</h3>
-			<hr><br>
+			<h3 class="text-center">Comprobar resultados</h3>
+			<hr>
 			<div class="container well text-center" id="kludge">
 				<div class="row">
 					<form class="form-horizontal" action="Web/talkr/callr.php" method="post">
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Seleccionar estudio:</label>
 							<div class = "col-sm-6">
+								<!-- Carga del select con los estudios del usuario -->
 								<select class="form-control" id="sel" name="target">
 									<?php foreach($targets as $i):?>
 										<option <?php if($i['id_target'] == $id_target):?> selected <?php endif?> value = '<?=$i['id_target']?>'>
@@ -85,28 +116,11 @@
 						</div>
 					</form>
 				</div>
-				<!--<div class="row">
-					<div class="col-xs-6 col-md-6 col-sm-4 well">
-						<p>Regla de entrada 1</p>
-					</div>
-					<div class="col-xs-6 col-md-6 col-sm-4 well">
-						<p>Regla de entrada 2</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-6 col-md-6 col-sm-4 well">
-						<p>Regla de salida</p>
-					</div>
-					<div class="col-xs-6 col-md-6 col-sm-4 well">
-						<p>Resultado</p>
-					</div>
-				</div>
-			</div>-->
 		</main>
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../Include/pie.php'; ?>
+			<?php include 'Include2/pie2.php'; ?>
 		</footer>
 	</body>
 </html>

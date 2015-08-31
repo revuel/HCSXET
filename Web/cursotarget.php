@@ -1,37 +1,69 @@
 <?php
 	
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Este script recupera los estudios (targets) del usuario en sesión, así como
+		los datos del último estudio que este haya seleccionado. También controla 
+		que el usuario no tenga posibilidad de capturar datos de estudios de otros
+		usuarios.
+		
+	*/
+	
+	// Control de sesión: comprobando autorización
+	include 'Session/checksession.php'; 
+	
+	// Importando clase de consultas e instanciando objeto consultas
 	require_once 'Classes/DB_functions.php';
 	$db = new DB_Functions();
 	
+	// Almacenando id de usuario de la sesión
 	$u = $_COOKIE['usuario'];
 	
-	$alltarget = $db->getAllTargetfromuser($u);
+	// Gestión de la selección del estudio
+	if (isset($_GET['id_target'])) {
+		// Comprobar no consultar estudios de otros usuarios
+		$aux1 = $_GET['id_target'];
+		$aux = $db->getIdusuarioportarget($aux1);
+		
+		if( $aux == $u) {
+			$idtarget = $_GET['id_target']; // asignación estándar vía GET
+		}
+		else {
+			$idtarget = $db->getMintarget($u); 
+		}
+	} else {
+		// asignación del target con id mínimo 
+		$idtarget = $db->getMintarget($u); 
+	}
 	
-	print_r($alltarget);
+	// Consultas para la visualización de datos
+	$alltarget = $db->getAllTargetfromuser($u); // Estudios
+	$valoraciones = $db->getResultados($idtarget); // Estudio actual completo
+	$mediasprincipios = $db->getAvgprincipios($idtarget); // Puntuación media de cada principio
+	$nomuser = $db->getNombreusuario($u); // Nombre del usuario
 	
-	/*while($row=mysql_fetch_array($result)) 
-	{ 
-	$title=$row['title']; 
-	$url=$row['url']; 
-
-	$posts[] = array('title'=> $title, 'url'=> $url);
-
-	} 
-
-	$response['posts'] = $posts;
-
-	$fp = fopen('results.json', 'w');
-	fwrite($fp, json_encode($response));
-	fclose($fp);*/
-	
-	//http://stackoverflow.com/questions/2467945/how-to-generate-json-file-with-php
-	//http://stackoverflow.com/questions/17623550/write-data-to-a-json-file-from-php-file
 ?>
 
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
-		<title> HCXET </title>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+		<title> HCXET | <?=$nomuser ?> </title>
 		
 		<base href="../">
 		 
@@ -47,15 +79,22 @@
 		<link rel="stylesheet" href="CSS/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-theme.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="CSS/bootstrap-table.css">
-		
-		<style>
-			body { padding-top: 95px; }
-		</style>
+		<link rel="stylesheet" href="CSS/hcxet.css" type="text/css" media="screen">
 		
 		<!-- JAVASCRIPT -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+		<script src="JavaScript/hcxet.js"></script>
 		
-		<script src="JavaScript/bootstrap-table.js"></script>
+		<script type="text/javascript">
+			// Nuevo valor seleccionado en el select: recargar con valor GET
+			$(function()
+			{
+			  $("#sel").change(function()
+			  {
+				window.location='Web/cursotarget.php?id_target=' + this.value
+			  });
+			});
+		</script>
 		
 	</head>
 	
@@ -68,44 +107,109 @@
 		<!-- Contenido principal -->
 		<main>
 			<h3 class="text-center">Estado de los estudios en curso</h3>
-			<hr><br>
+			<hr>
 			<div class="container">
-				<div class="row">
-					<ul class="nav nav-tabs">
-						  <li role="presentation" class="active"><a >Estudio 1</a></li>
-						  <!--<li role="presentation"><a >...</a></li>
-						  <li role="presentation"><a >Estudio n</a></li>-->
-						<?php foreach($alltarget as $i):?>
-								<li role="presentation"><a ><?=($i[1])?></a></li>
-						<?php endforeach ?>
-					</ul>
+				<div class="row well">
+					<div class="col-xs-4 col-md-4 text-center">
+						<p><strong>Seleccione el estudio:</strong></p>
+					</div>
+					<div class="col-xs-8 col-md-8">
+						<!-- Carga de los nombres de los estudios del usuario, activar según valor GET-->
+						<select class="form-control" id="sel">
+							<?php foreach($alltarget as $i):?>
+									<option <?php if($i['id_target'] == $idtarget):?> selected <?php endif?> value = '<?=$i['id_target']?>'>
+										<?=($i[1])?>
+									</option>
+							<?php endforeach ?>
+						</select>
+					</div>
 				</div>
-				<div class="row">
-					<table data-toggle="table" data-url="data1.json" data-height="299" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
-						<thead>
-						<tr>
-							<th data-field="state" data-radio="true">ID</th>
-							<th data-field="id" data-align="right">Pregunta 1</th>
-							<th data-field="name" data-align="center">...</th>
-							<th data-field="name" data-align="center">...</th>
-							<th data-field="price" data-align="left">...</th>
-						</tr>
-						</thead>
-					</table>
+			
+				<div class="row well">
+					<h3>Valoraciones actuales de los participantes</h3>
+					<div class ="table-responsive">
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>#</th>
+								<th>1ª</th>
+								<th>2ª</th>
+								<th>3ª</th>
+								<th>4ª</th>
+								<th>5ª</th>
+								<th>6ª</th>
+								<th>7ª</th>
+								<th>8ª</th>
+								<th>9ª</th>
+								<th>10ª</th>
+								<th>11ª</th>
+								<th>12ª</th>
+								<th>13ª</th>
+								<th>14ª</th>
+								<th>15ª</th>
+							</tr>
+							</thead>
+							<tbody>
+								<!-- Carga de los valores de respuesta del estudio de cada participante -->
+								<?php foreach($valoraciones as $v):?>
+									<tr class ="text-center">
+										<td style="text-align:left;"> <mark><?=$v[0]?> </mark></td>
+										<td><?=($v[3])?></td>
+										<td><?=($v[4])?></td>
+										<td><?=($v[5])?></td>
+										<td><?=($v[6])?></td>
+										<td><?=($v[7])?></td>
+										<td><?=($v[8])?></td>
+										<td><?=($v[9])?></td>
+										<td><?=($v[10])?></td>
+										<td><?=($v[11])?></td>
+										<td><?=($v[12])?></td>
+										<td><?=($v[13])?></td>
+										<td><?=($v[14])?></td>
+										<td><?=($v[15])?></td>
+										<td><?=($v[16])?></td>
+										<td><?=($v[17])?></td>
+									</tr>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+					
+					<div class="row well">
+					<h3>Puntuación media actual de cada principio</h3>
+					<div class ="table-responsive">
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th><strong>Armonía</strong></th>
+								<th><strong>Apreciación del contexto activo</strong></th>
+								<th><strong>Disposición de la información</strong></th>
+								<th><strong>Intercesión para el conocimiento</strong></th>
+								<th><strong>Custodia de valores</strong></th>
+							</tr>
+							</thead>
+							<tbody>
+								<!-- Carga de la media de cada grupo de respuestas según los principios -->
+								<?php foreach($mediasprincipios as $m):?>
+									<tr class ="text-center">
+										<td><?=($m[0])?></td>
+										<td><?=($m[1])?></td>
+										<td><?=($m[2])?></td>
+										<td><?=($m[3])?></td>
+										<td><?=($m[4])?></td>
+									</tr>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</main>
 		
 		<!-- Pie de página-->
 		<footer>
-			<?php include '../Include/pie.php'; ?>
+			<?php include 'Include2/pie2.php'; ?>
 		</footer>
-		
-		<!-- TokenFields Bootstrap (control)-->
-		<script>
-			$('#table').bootstrapTable({
-				url: 'data.json'
-			});
-		</script>
 	</body>
 </html>

@@ -1,17 +1,58 @@
 <!DOCTYPE HTML>
-<html>
-
+<html lang = "es">
 	<head>
+		<!-- ---------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+
+		---------------------------------------------------------------------------- -->
+	
+		<title>HCXET | Lugares</title>
+		
+		<!-- METADATOS -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<title>Ubicaciones HCC</title>
-		
+		<!-- CSS -->
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+		<style>
+			#volver {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			z-index: 1;
+			width:100px;
+			height:100px;
+			
+			-webkit-border-radius: 50px;
+			-moz-border-radius: 50px;
+			border-radius: 50px;
+			
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a4b357+0,75890c+100;Olive+3D+%233 */
+			background: #a4b357; /* Old browsers */
+			background: -moz-linear-gradient(top,  #a4b357 0%, #75890c 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a4b357), color-stop(100%,#75890c)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #a4b357 0%,#75890c 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #a4b357 0%,#75890c 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #a4b357 0%,#75890c 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  #a4b357 0%,#75890c 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c',GradientType=0 ); /* IE6-9 */
+			
+			text-align:center;
+			color:#fff;
+		}
 		
+		#volver:hover{cursor:pointer;}
+		
+		#volver p {line-height:100px;}
+		</style>
+		
+		<!-- JAVASCRIPT -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		
 		<script>
 			$( document ).ready(function() {
 				
@@ -28,6 +69,7 @@
 					attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 					maxZoom: 19,
 					minZoom: 3,
+					noWrap: true,
 					id: 'revuel.mo805j1n',
 					accessToken: 'pk.eyJ1IjoicmV2dWVsIiwiYSI6IjY5NmIyODI5MjI3YTE1OTM4ODE5ODBmNDg1YzEyZjk4In0.1rjTdwLQy4h695I1HMsfYw'
 				}).addTo(map);
@@ -114,8 +156,6 @@
 				var marker20 = L.marker([22.2829989, 114.1370848]).addTo(map);
 				marker20.bindPopup("<a href='http://www4.comp.polyu.edu.hk/~csyuzhao/' target='_blank'>University of Hong Kong</a><br>Cognitive Computing Lab");
 				
-				
-				
 				// DEVELOPMENT PURPOSES
 				/*Add a circle 
 				var circle = L.circle([40.44202, -3.83407], 500, {
@@ -130,14 +170,21 @@
 					alert("You clicked the map at " + e.latlng);
 				}
 				map.on('click', onMapClick);*/
+				
+				// Botón para volver
+				// Ir a la página inical 
+				$('#volver').click(function(){
+					window.location.href = "/HCXET/index.php";
+				});
 			});
 		</script>
-		
 	</head>
  
 	<body>
+		<div id="volver">
+			<p>Volver</p>
+		</div>
 		<div id="map">
-		
 		</div>
 	</body>
 </html>

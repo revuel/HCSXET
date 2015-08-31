@@ -1,57 +1,62 @@
 <?php
-
+	/* -----------------------------------------------------------------------------
+		
+		Proyecto: Human Centeredness experimental evaluation tool
+		Autores: Olga Peñalba, Miguel Revuelta
+		Fecha: 2015-09-1
+		Versión: 2.0 (español)
+		
+	----------------------------------------------------------------------------- */
+	
+	/* 
+		Este script crea una nueva lista de destinatarios en la base de datos.
+	*/
+	
+	// Comprobando autorización de sesión
+	include '../Session/checksession.php'; // Comprobando autorización
+	
+	// Importando clase consultas
 	require_once '../Classes/DB_functions.php';
 	
+	// Captura de datos
 	$nombrelista = $_POST['nombrelista'];
 	$participantes = $_POST['participantes'];
 	$myArray = explode(', ', $participantes);
 	
+	// Cookie
 	$id_usuario = $_COOKIE['usuario'];
 
-	echo ($nombrelista . ' ');
-	echo ($id_usuario . ' ');
-	print_r($participantes);
-	
-	try
-	{
+	try {
+		// Instanciando clase consultas
 		$db = new DB_Functions();
 		
 		// Creación de lo que viene a la lista
 		$db->nuevaLista($nombrelista, $id_usuario);
 		
-		// Ahora hay que recuperar el id de la lista recientemente creado (al ser autoincrement debería ser el mayor nº)
+		// Recuperar el id de la lista recientemente creada 
 		$id_lista = $db->maxListaid();
 		
-		// ir insertando a todos los participantes en la tabla participantes (si no existen) e ir haciendo entradas
-		// en la tabla valoraciones (e ir mandandoles un correo)
-		
-		foreach($myArray as $i)
-		{
+		// Insertar a los participantes en la lista
+		foreach($myArray as $i) {
+			
 			// Comprobar que el participante existe:
 			$id_dest_actual = $db->existeDestinatario($i);
 			
-			//echo($i);
-			
-			if ($id_dest_actual != false)
-			{
-				//echo('<br> verdadero ' . $id_dest_actual); // Si existe cojo su id y lo añadimos a lista
-				$db->agregarParticipantealista($id_lista, $id_dest_actual);
-			}
-			else
-			{
-				//echo('<br>  falso');
-				// Si no existe, lo creo, cojo su id y lo añadimos a lista
-				$db->nuevoDestinatario($i);
-				$id_dest_actual = $db->existeDestinatario($i); // ya sabemos que existe porque lo acabo de crear... reciclando y eso...
-				$db->agregarParticipantealista($id_lista, $id_dest_actual);
+			if ($id_dest_actual != false) {
+				// # participante existe
+				$db->agregarParticipantealista($id_lista, $id_dest_actual); // Alta tabla lista
+			} else {
+				// # participante NO existe
+				$db->nuevoDestinatario($i); // Alta tabla destinatario
+				$id_dest_actual = $db->existeDestinatario($i); // Capturar id destinatario recién creado
+				$db->agregarParticipantealista($id_lista, $id_dest_actual); // Alta tabla lista
 			}
 		}
-	}	
-	catch(PDOException $e)
-	{
+	} catch(PDOException $e) {
 		echo("Error: " + $e);
 	}
 	
-	header("Location: http://localhost/HCXET/Web/start.php"); // Tal vez llevar a una pantalla de agradecimiento
+	// Reubicación a la página de invocación
+	header("Location: http://localhost/HCXET/Web/Listas/listas.php"); // Tal vez llevar a una pantalla de agradecimiento
 	die();
 ?>

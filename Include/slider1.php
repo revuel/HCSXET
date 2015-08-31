@@ -1,4 +1,4 @@
-<div id="carousel-example-generic" class="carousel slide text-center" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -12,7 +12,7 @@
   <div class="carousel-inner" role="listbox">
     <div class="item active">
 		<img class="img-responsive" src="Pics/Principio+1.png" alt="Primer principio" style="display:inline; float:left;">
-		<img class="img-responsive" src="Pics/armonia.png" alt="Segundo principio" style="float:right; max-width:595px; max-height:400px;">
+		<img class="img-responsive" src="Pics/armonia.png" alt="Armonía" style="float:right; max-height:400px;">
 		<div class = "clearfix"></div>
 		<div class="carousel-caption sha">
 			<h2>Armonía</h3>
@@ -22,7 +22,7 @@
     </div>
     <div class="item">
 		<img class="img-responsive" src="Pics/Principio+2.png" alt="Segundo principio" style="display:inline; float:left;">
-		<img class="img-responsive" src="Pics/contexto.jpg" alt="Segundo principio" style="float:right; max-width:595px; max-height:400px;">
+		<img class="img-responsive" src="Pics/contexto.png" alt="Contexto" style="float:right; max-height:400px;">
 		<div class = "clearfix"></div>
 		<div class="carousel-caption sha">
 			<h2>Apreciación del contexto activo</h2>
@@ -31,7 +31,7 @@
     </div>
 	<div class="item">
 		<img class="img-responsive" src="Pics/Principio+3.png" alt="Tercer principio" style="display:inline; float:left;">
-		<img class="img-responsive" src="Pics/informacion.jpg" alt="Segundo principio" style="float:right; max-width:595px; max-height:400px;">
+		<img class="img-responsive" src="Pics/informacion.png" alt="Segundo principio" style="float:right;">
 		<div class = "clearfix"></div>
 		<div class="carousel-caption sha">
 			<h2>Disposición de la información</h2>
@@ -40,7 +40,7 @@
 	</div>
 	<div class="item">
 		<img class="img-responsive" src="Pics/Principio+4.png" alt="Cuarto principio" style="display:inline; float:left;">
-		<img class="img-responsive" src="Pics/conocimiento.png" alt="Segundo principio" style="float:right; max-width:595px; max-height:400px;">
+		<img class="img-responsive" src="Pics/conocimiento.png" alt="Segundo principio" style="float:right;">
 		<div class = "clearfix"></div>
 		<div class="carousel-caption sha">
 			<h2>Intercesión para el conocimiento</h2>
@@ -49,7 +49,7 @@
 	</div>
 	<div class="item">
 		<img class="img-responsive" src="Pics/Principio+5.png" alt="Quinto principio" style="display:inline; float:left;">
-		<img class="img-responsive" src="Pics/valores.png" alt="Segundo principio" style="float:right; max-width:595px; max-height:400px;">
+		<img class="img-responsive" src="Pics/valores.png" alt="Segundo principio" style="float:right;">
 		<div class = "clearfix"></div>
 		<div class="carousel-caption sha">
 			<h2>Custodia de valores</h2>
